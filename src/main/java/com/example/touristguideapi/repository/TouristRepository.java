@@ -4,6 +4,7 @@ import com.example.touristguideapi.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /*
 Klassen skal desuden indeholde CRUD metoder, der arbejder på ovenstående ArrayList.
@@ -34,5 +35,12 @@ public class TouristRepository {
         return touristAttractions;
     }
 
-    
+    public TouristAttraction findAttractionByName(String name){
+        for (TouristAttraction attraction : touristAttractions){
+            if (Objects.equals(attraction.getName(), name)){
+                return attraction;
+            }
+        }
+        return null;
+    }
 }
