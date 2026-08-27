@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 /*
-Tilføj en ArrayList til opbevaring af data (om ikke så længe skal I arbejde med en rigtig database).
-
-Opret et par TouristAttraction objekter, som tilføjes til denne ArrayList.
-
 Klassen skal desuden indeholde CRUD metoder, der arbejder på ovenstående ArrayList.
 
 Vent evt. med den endelige metodesignatur for CRUD metoderne til I
