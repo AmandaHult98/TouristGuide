@@ -5,7 +5,8 @@ import com.example.touristguideapi.service.TouristService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -14,14 +15,32 @@ import java.util.ArrayList;
 public class TouristController {
     private final TouristService service;
 
+
     public TouristController(TouristService touristService) {
         this.service = touristService;
+
     }
 
-    @getMapping()
-    public ResponseEntity<ArrayList<ToursitAttraction>> getToursitAttrctions() {
-        ArrayList<TouristAttraction> attractions = service.getToursitAttractions();
+    @GetMapping()
+    public ResponseEntity<ArrayList<TouristAttraction>> getToursitAttrctions() {
+        ArrayList<TouristAttraction> attractions = service.getTouristAttractions();
         return new ResponseEntity<>(attractions, HttpStatus.OK);
+    }
+
+    @GetMapping("{name}")
+    public ResponseEntity<TouristAttraction> getName(@PathVariable String name) {
+        TouristAttraction attraction = service.findAttractionByName(name);
+        if (attraction == null) {
+            return new ResponseEntity<>(attraction, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(attraction, HttpStatus.OK);
+        }
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<TouristAttraction> addAttraction(@RequestBody TouristAttraction attraction) {
+       service.addAttraction(attraction);
+       return ResponseEntity.status(201).body(attraction);
     }
 
 
