@@ -17,4 +17,17 @@ public class TouristService {
     public ArrayList<TouristAttraction> getTouristAttractions() {
         return repository.getAllAttractions();
     }
+
+    public TouristAttraction findAttractionByName(String name) {
+        TouristAttraction touristAttraction = repository.findAttractionByName(name);
+        return touristAttraction;
+    }
+
+    public void addAttraction(TouristAttraction attraction) {
+        repository.addAttraction(attraction);
+    }
+
+    public void updateAttraction(TouristAttraction attraction) {
+        TouristAttraction updatedAttraction = repository.updateAttraction(attraction);
+    }
 }
