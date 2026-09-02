@@ -54,7 +54,7 @@ public class TouristRepository {
     public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction){
         TouristAttraction attraction = findAttractionByName(name);
         touristAttractions.set(touristAttractions.indexOf(attraction), updatedAttraction);
-        return attraction;
+        return updatedAttraction;
     }
 
 //    public void updateAttractionName(TouristAttraction attraction, String newName) {
