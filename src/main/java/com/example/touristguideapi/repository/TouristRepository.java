@@ -41,12 +41,12 @@ public class TouristRepository {
     }
 
     public void removeAttraction(String name) {
-        for (TouristAttraction attraction : touristAttractions) {
-            if (Objects.equals(attraction.getName(), name)) {
-                touristAttractions.remove(attraction);
-            } else {
-                System.out.println("No attraction with that name.");
-            }
+        TouristAttraction attraction = findAttractionByName(name);
+
+        if (attraction != null) {
+            touristAttractions.remove(attraction);
+        } else {
+            System.out.println("No attraction with that name.");
         }
     }
 
