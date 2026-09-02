@@ -1,3 +1,4 @@
+
 /*CSS har per default noget margen. Det fjerner jeg her, så vi selv har fuld kontrol over det.*/
 body {
     margin: 0;
@@ -9,39 +10,52 @@ body {
         "header"
         "images"
         "main"
-        "nav attractions"
+        "container"
         "footer";
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto auto;
     min-height: 100vh; /*vh står for view heigh, ie skærmens højdet*/
+    max-width: 100vw;
 }
 
 .images {
-    display: flex;
-    justify-content: space-between;
-    max-width: 100vw;
+    grid-area: images;
+    display: inline-flex;
+    justify-content: space-evenly;
+    flex-direction: row;
     flex-wrap: nowrap; /* Stopper den fra at gå ned på næste linje*/
+    flex: 0 1 auto;
+    overflow: hidden;
+
     img {
-        max-height: 180px;
-        flex: 0 1;
-        white-space: nowrap;
+        min-width: 0;
+        max-height: 14em;
+
+        /*Åbenbart er flex items' default min-width "auto" i stedet for 0
+        Det bliver ved med at override enhver anden (mindre) størrelse
+        hvis man ikke selv sætter min-width til noget mindre.*/
     }
 }
 
 #main-header {
+    grid-area: header;
     background-color: #4caf50;
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border-radius: 50px;
+    margin: 1%;
 }
 
 .velkommen {
+    grid-area: main;
     text-align: center;
+    padding: 2%;
 }
 
 .grid-containter {
+    grid-area: container;
     display: grid;
     grid-template-columns: 200px auto auto;
 
@@ -86,6 +100,5 @@ footer {
     .images {
     }
     img {
-        height: 100px;
     }
 }
