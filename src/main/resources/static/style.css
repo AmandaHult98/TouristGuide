@@ -35,3 +35,20 @@ body {
 .velkommen {
     text-align: center;
 }
+
+.box-button {
+    color: purple;
+    background-color: cadetblue;
+    border: 2px solid #d63384;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.box-button h3 {
+    color: white;
+    margin-top: 0;
+}
+
+.box-button:hover {
+    background-color: beige;
+}
