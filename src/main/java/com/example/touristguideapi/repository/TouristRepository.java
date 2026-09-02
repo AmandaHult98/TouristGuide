@@ -50,18 +50,11 @@ public class TouristRepository {
         }
     }
 
-    // er det attraction der skal returneres? eller arraylisten?
+
     public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction){
         TouristAttraction attraction = findAttractionByName(name);
         touristAttractions.set(touristAttractions.indexOf(attraction), updatedAttraction);
         return updatedAttraction;
     }
 
-//    public void updateAttractionName(TouristAttraction attraction, String newName) {
-//        attraction.setName(newName);
-//    }
-//
-//    public void updateAttractionDescription(TouristAttraction attraction, String newDescription) {
-//        attraction.setDescription(newDescription);
-//    }
 }
