@@ -27,7 +27,11 @@ public class TouristService {
         repository.addAttraction(attraction);
     }
 
-    public void updateAttraction(TouristAttraction attraction) {
-        TouristAttraction updatedAttraction = repository.updateAttraction(attraction);
+    public void updateAttraction(String name, TouristAttraction attraction) {
+        repository.updateAttraction(name, attraction);
+    }
+
+    public void removeAttraction(String name) {
+        repository.removeAttraction(name);
     }
 }

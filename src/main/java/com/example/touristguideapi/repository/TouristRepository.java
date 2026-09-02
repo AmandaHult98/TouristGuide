@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 /*
 Klassen skal desuden indeholde CRUD metoder, der arbejder på ovenstående ArrayList.
 
@@ -45,33 +44,24 @@ public class TouristRepository {
         for (TouristAttraction attraction : touristAttractions) {
             if (Objects.equals(attraction.getName(), name)) {
                 touristAttractions.remove(attraction);
-            }
-            else {
+            } else {
                 System.out.println("No attraction with that name.");
             }
         }
     }
 
-    public void updateAttractionName(String oldName, String newName) {
-        for (TouristAttraction attraction : touristAttractions){
-            if (Objects.equals(attraction.getName(), oldName)){
-                attraction.setName(newName);
-            }
-            else {
-                System.out.println("No attraction with that name.");
-            }
-        }
+    // er det attraction der skal returneres? eller arraylisten?
+    public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction){
+        TouristAttraction attraction = findAttractionByName(name);
+        touristAttractions.set(touristAttractions.indexOf(attraction), updatedAttraction);
+        return attraction;
     }
 
-    public void updateAttractionDescription(String name, String newDescription) {
-        for (TouristAttraction attraction : touristAttractions){
-            if (Objects.equals(attraction.getName(), name)){
-                attraction.setDescription(newDescription);
-            }
-            else {
-                System.out.println("No attraction with that name.");
-            }
-        }
-    }
-
+//    public void updateAttractionName(TouristAttraction attraction, String newName) {
+//        attraction.setName(newName);
+//    }
+//
+//    public void updateAttractionDescription(TouristAttraction attraction, String newDescription) {
+//        attraction.setDescription(newDescription);
+//    }
 }
