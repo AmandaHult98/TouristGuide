@@ -36,6 +36,26 @@ body {
     text-align: center;
 }
 
+.grid-containter {
+    display: grid;
+    width: 200px;
+}
+
+.box {
+    background-color: white;
+    border: 5px solid blue;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+footer {
+    grid-area: footer;
+    padding: 3px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
 .box-button {
     color: purple;
     background-color: cadetblue;
