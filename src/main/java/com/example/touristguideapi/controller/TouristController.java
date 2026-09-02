@@ -45,7 +45,7 @@ public class TouristController {
 
     @PostMapping("/update")
     public ResponseEntity<TouristAttraction> updateAttraction(@RequestBody TouristAttraction attraction) {
-        service.updateAttraction(attraction);
+        service.updateAttraction(attraction.getName(), attraction);
         if (attraction == null) {
             return new ResponseEntity<>(attraction, HttpStatus.NOT_FOUND);
         } else {
@@ -55,11 +55,7 @@ public class TouristController {
 
     @PostMapping("/delete/{name}")
     public ResponseEntity<TouristAttraction> removeAttraction(@PathVariable String name, @RequestBody TouristAttraction attraction) {
-        service.removeAttraction(attraction);
+        service.removeAttraction(name);
+        return new ResponseEntity<>(attraction, HttpStatus.OK);
     }
-}
-
-
-
-
 }
