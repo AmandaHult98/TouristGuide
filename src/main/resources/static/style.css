@@ -39,6 +39,8 @@ body {
 .grid-containter {
     display: grid;
     width: 200px;
+    grid-template-columns: 1fr auto auto;
+
 }
 
 .box {
