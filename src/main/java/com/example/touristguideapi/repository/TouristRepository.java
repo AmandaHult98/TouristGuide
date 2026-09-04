@@ -15,6 +15,7 @@ har set beskrivelsen af Controller klassens endpoints nedenfor.
 
 @Repository
 public class TouristRepository {
+    // en arrayliste initialiseres med tre attraktioner for at vi har noget at teste ud fra.
     private ArrayList<TouristAttraction> touristAttractions = new ArrayList<>(
             List.of(
                     new TouristAttraction("Tivoli", "Forlystelsespark i indre København"),
@@ -27,6 +28,7 @@ public class TouristRepository {
         return touristAttractions;
     }
 
+    // Tager et navn på en attraction og returnerer hele objektet, hvis det kan findes. Kaldes fra service.
     public TouristAttraction findAttractionByName(String name) {
         for (TouristAttraction attraction : touristAttractions) {
             if (Objects.equals(attraction.getName(), name)) {
@@ -36,6 +38,7 @@ public class TouristRepository {
         return null;
     }
 
+    // Tilføjer et attraktion objekt til arraylisten. Kaldes fra service.
     public void addAttraction(TouristAttraction attraction) {
         touristAttractions.add(attraction);
     }
@@ -45,16 +48,19 @@ public class TouristRepository {
 
         if (attraction != null) {
             touristAttractions.remove(attraction);
-        } else {
+        }
+        else {
             System.out.println("No attraction with that name.");
         }
     }
 
-
-    public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction){
+    // Tager imod et navn og en attraktion (updatedeAttraction) og
+    // sætter en eksisterende attraktion (attraction) til at være i lig med
+    // den attraktion (updatedAttraction), den har taget imod.
+    // Navnet bruges til at finde den attraktion der skal ændres
+    // og så bruges dets index i .set metoden
+    public void updateAttraction(String name, TouristAttraction updatedAttraction){
         TouristAttraction attraction = findAttractionByName(name);
         touristAttractions.set(touristAttractions.indexOf(attraction), updatedAttraction);
-        return updatedAttraction;
     }
-
 }
