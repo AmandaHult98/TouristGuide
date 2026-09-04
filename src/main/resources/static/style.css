@@ -37,7 +37,7 @@ body {
     }
 }
 
-#main-header {
+header {
     grid-area: header;
     background-color: #4caf50;
     color: white;
@@ -45,7 +45,7 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     border-radius: 50px;
-    margin: 1%;
+    margin: 1em;
 }
 
 .velkommen {
@@ -100,14 +100,4 @@ footer {
 
 .box-button:hover {
     background-color: beige;
-}
-
-
-/*Phone*/
-@media (max-width: 50em){
-
-    .images {
-    }
-    img {
-    }
 }
