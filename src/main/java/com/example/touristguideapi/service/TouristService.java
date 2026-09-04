@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 @Service
 public class TouristService {
+    //Opretter et objekt af TouristRepository så vi kan bruge dens metoder.
     private TouristRepository repository;
 
     public TouristService(TouristRepository repository) {
@@ -18,19 +19,23 @@ public class TouristService {
         return repository.getAllAttractions();
     }
 
+    // Kalder på en metode i repository, der returnerer en attraktion baseret på navn.
+    // Kaldes selv fra controller.
     public TouristAttraction findAttractionByName(String name) {
-        TouristAttraction touristAttraction = repository.findAttractionByName(name);
-        return touristAttraction;
+        return repository.findAttractionByName(name);
     }
 
+    // Tager imod en attraction fra controlleren og sender det videre til repository
     public void addAttraction(TouristAttraction attraction) {
         repository.addAttraction(attraction);
     }
 
+    // Tager imod et navn og en attraction fra controlleren og sender det videre til metoden i repository.
     public void updateAttraction(String name, TouristAttraction attraction) {
         repository.updateAttraction(name, attraction);
     }
 
+    // Tager imod et navn fra controlleren og sender det videre til en metode i repository
     public void removeAttraction(String name) {
         repository.removeAttraction(name);
     }
