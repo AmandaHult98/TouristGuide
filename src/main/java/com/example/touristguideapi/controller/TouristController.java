@@ -23,10 +23,17 @@ public class TouristController {
 
     // GET-endpoint, der henter alle turistattraktioner fra service layer.
     // Returnerer til klienten med status 200 (OK).
-    @GetMapping()
+    /*@GetMapping()
     public ResponseEntity<ArrayList<TouristAttraction>> getToursitAttrctions() {
         ArrayList<TouristAttraction> attractions = service.getTouristAttractions();
         return new ResponseEntity<>(attractions, HttpStatus.OK);
+    }*/
+
+    @GetMapping()
+    public String getToursitAttrctions(Model model) {
+        ArrayList<TouristAttraction> attractions = service.getTouristAttractions();
+        model.addAttribute("attractionList", attractions);
+        return "attractionList";
     }
 
     // GET-endpoint, der henter information om en specifik attraktion fra service layer.

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/attractionList.css}">
+    <title>Attraction List</title>
+</head>
+<body>
+
+<h1>Turistattraktioner</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Navn</th>
+        <th>Beskrivelse</th>
+        <th>Tags</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="touristattraction : ${attractionList}">
+        <td th:text="${touristattraction.getName}"></td>
+        <td th:text="${touristattraction.getDescription}"></td>
+        <td><button type="button">Tags</button></td>
+    </tr>
+    </tbody>
+</table>
+
+<button type="button" th:href="@{/addAttraction}">Tilføj attraktion</button>
+
+</body>
+</html>
