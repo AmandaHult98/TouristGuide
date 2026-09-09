@@ -16,19 +16,20 @@
     <tr>
         <th>Navn</th>
         <th>Beskrivelse</th>
-        <th>Tags</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="touristattraction : ${attractionList}">
         <td th:text="${touristattraction.getName}"></td>
         <td th:text="${touristattraction.getDescription}"></td>
+        <td><button type="button">Opdater</button></td>
+        <td><button type="button">Slet</button></td>
         <td><button type="button">Tags</button></td>
     </tr>
     </tbody>
 </table>
 
-<button type="button" th:href="@{/addAttraction}">Tilføj attraktion</button>
+<button class="tilføj" type="button" th:href="@{/addAttraction}">Tilføj attraktion</button>
 
 </body>
 </html>
