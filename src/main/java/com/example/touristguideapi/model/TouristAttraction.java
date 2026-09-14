@@ -21,12 +21,20 @@ public class TouristAttraction {
         return description;
     }
 
+    public EnumSet<Tag> getTags() {
+        return tags;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setTags(EnumSet<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override
