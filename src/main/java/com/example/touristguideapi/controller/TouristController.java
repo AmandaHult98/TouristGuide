@@ -80,4 +80,9 @@ public class TouristController {
         service.removeAttraction(name);
         return new ResponseEntity<>(attraction, HttpStatus.OK);
     }
+
+    @GetMapping("/{name}/tags")
+    public String getAttractionTags(Model model, TouristAttraction attraction){
+        return "tags";
+    }
 }
