@@ -5,7 +5,24 @@
     <title>Title</title>
     <link rel="stylesheet" th:href="@{tagsStyle.css}">
 </head>
-<body>
+<body th:object="${attraction}" >
 
+<h1 th:text="@{name}"></h1>
+    <!-- tags skal evt være på dansk i stedet eller dette skal gøres anderledes så de skrives på dansk her -->
+    <ul th:each="tag : ${attraction.tags}">
+        <li th:text="@{tag}"></li>
+    </ul>
+    <!-- tags printet med dansk tekst ved hjælp af if statement check -->
+    <ul th:each="tag : ${attraction.tags}">
+        <li th:if="${tag == ARCHITECTURE}"> Arkitektur</li>
+        <li th:if="${tag == KID_FRIENDLY}"> ABørnevenligt</li>
+        <li th:if="${tag == AMUSEMNET_PARK}">>Forlystelsespark</li>
+        <li th:if="${tag == HISTORY}">>Historie</li>
+        <li th:if="${tag == ART}">Kunst</li>
+        <li th:if="${tag == MUSEUM}">>Museum</li>
+        <li th:if="${tag == NATURE}">>Natur</li>
+        <li th:if="${tag == CASTLE}">Slot</li>
+        <li th:if="${tag == ZOO}">Zoologisk Have</li>
+    </ul>
 </body>
 </html>

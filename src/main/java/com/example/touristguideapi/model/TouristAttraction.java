@@ -5,11 +5,13 @@ import java.util.EnumSet;
 public class TouristAttraction {
     private String name;
     private String description;
+    private String city;
     private EnumSet<Tag> tags;
 
-    public TouristAttraction(String name, String description, EnumSet<Tag> tags) {
+    public TouristAttraction(String name, String description, String city, EnumSet<Tag> tags) {
         this.name = name;
         this.description = description;
+        this.city = city;
         this.tags = tags;
     }
 
