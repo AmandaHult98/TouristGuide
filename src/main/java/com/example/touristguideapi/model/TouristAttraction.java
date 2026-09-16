@@ -1,22 +1,25 @@
 package com.example.touristguideapi.model;
 
-import java.util.List;
+import java.util.EnumSet;
 
 public class TouristAttraction {
     private String name;
     private String description;
+    private String city;
+    private EnumSet<Tag> tags;
     private List<Tags> tags;
     private String city;
 
     public TouristAttraction() {
 
+    public TouristAttraction(String name, String description, String city, EnumSet<Tag> tags) {
     }
 
     public TouristAttraction(String name, String description, List<Tags> tags, String city) {
         this.name = name;
         this.description = description;
-        this.tags = tags;
         this.city = city;
+        this.tags = tags;
     }
 
     public String getName() {
@@ -27,11 +30,7 @@ public class TouristAttraction {
         return description;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public List<Tags> getTags() {
+    public EnumSet<Tag> getTags() {
         return tags;
     }
 
@@ -43,12 +42,8 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setTags(List<Tags> tags) {
+    public void setTags(EnumSet<Tag> tags) {
         this.tags = tags;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     @Override

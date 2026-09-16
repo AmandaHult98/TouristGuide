@@ -102,4 +102,12 @@ public class TouristController {
         service.removeAttraction(name);
         return new ResponseEntity<>(attraction, HttpStatus.OK);
     }
+
+    @GetMapping("/{name}/tags")
+    public String getAttractionTags(@PathVariable String name, Model model){
+        TouristAttraction attraction = getName(name).getBody();
+        // TouristAttraction attraction = service.findAttractionByName(name);
+         model.addAttribute("attraction", attraction);
+        return "tags";
+    }
 }
