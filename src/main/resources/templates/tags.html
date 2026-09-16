@@ -5,24 +5,25 @@
     <title>Title</title>
     <link rel="stylesheet" th:href="@{tagsStyle.css}">
 </head>
-<body th:object="${attraction}" >
+<body>
 
-<h1 th:text="@{name}"></h1>
+<h1 th:text="${attraction.name}"></h1>
     <!-- tags skal evt være på dansk i stedet eller dette skal gøres anderledes så de skrives på dansk her -->
-    <ul th:each="tag : ${attraction.tags}">
-        <li th:text="@{tag}"></li>
+    <ul th:each="Tag : ${taglist}">
+<!--        <li th:text="${stat.index + 1}" ></li>-->
+        <li th:text="*{Tag}"></li>
     </ul>
     <!-- tags printet med dansk tekst ved hjælp af if statement check -->
-    <ul th:each="tag : ${attraction.tags}">
-        <li th:if="${tag == ARCHITECTURE}"> Arkitektur</li>
-        <li th:if="${tag == KID_FRIENDLY}"> ABørnevenligt</li>
-        <li th:if="${tag == AMUSEMNET_PARK}">>Forlystelsespark</li>
-        <li th:if="${tag == HISTORY}">>Historie</li>
-        <li th:if="${tag == ART}">Kunst</li>
-        <li th:if="${tag == MUSEUM}">>Museum</li>
-        <li th:if="${tag == NATURE}">>Natur</li>
-        <li th:if="${tag == CASTLE}">Slot</li>
-        <li th:if="${tag == ZOO}">Zoologisk Have</li>
+    <ul th:each="Tag : ${taglist}">
+        <li th:if="*{Tag.name() eq 'ARCHITECTURE'}"> Arkitektur</li>
+        <li th:if="*{Tag.name() eq 'KID_FRIENDLY'}"> Børnevenligt</li>
+        <li th:if="*{Tag.name() eq 'AMUSEMNET_PARK'}">>Forlystelsespark</li>
+        <li th:if="*{Tag.name() eq 'HISTORY'}">Historie</li>
+        <li th:if="*{Tag.name() eq 'ART'}">Kunst</li>
+        <li th:if="*{Tag.name() eq 'MUSEUM'}">Museum</li>
+        <li th:if="*{Tag.name() eq 'NATURE'}">>Natur</li>
+        <li th:if="*{Tag.name() eq 'CASTLE'}">Slot</li>
+        <li th:if="*{Tag.name() eq 'ZOO'}">Zoologisk Have</li>
     </ul>
 </body>
 </html>
