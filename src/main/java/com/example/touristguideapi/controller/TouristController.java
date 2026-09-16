@@ -50,13 +50,16 @@ public class TouristController {
     }
 
 
-    // POST-endpoint der tilføjer en attraktion (navn og beskrivelse) til attraktionslisten.
-    // Kalder på service layer, som derefter kalder på repository layer.
-    // Returnerer til klienten med status 201 (CREATED) når attraktionen blev oprettet.
-    @PostMapping("/add")
-    public ResponseEntity<TouristAttraction> addAttraction(@RequestBody TouristAttraction attraction) {
+    @GetMapping("/add-attraction")
+    public String submitAttraction() {
+        return "add-attraction";
+    }
+
+    @PostMapping("/save")
+    public String addAttraction(TouristAttraction attraction, Model model) {
         service.addAttraction(attraction);
-        return ResponseEntity.status(201).body(attraction);
+        model.addAttribute("attraction", attraction);
+        return "successful";
     }
 
 
