@@ -1,5 +1,6 @@
 package com.example.touristguideapi.controller;
 
+import com.example.touristguideapi.model.Tags;
 import com.example.touristguideapi.model.TouristAttraction;
 import com.example.touristguideapi.service.TouristService;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("attractions")
@@ -59,17 +61,37 @@ public class TouristController {
         return ResponseEntity.status(201).body(attraction);
     }
 
+    @GetMapping("{name}/edit")
+    public String editAttraction(Model model, @PathVariable String name) {
+        TouristAttraction attraction = service.findAttractionByName(name);
+        model.addAttribute("attraction", attraction);
+
+        List<String> cityList = service.getCities();
+        model.addAttribute("cityList", cityList);
+
+        List<Tags> tagsList = attraction.getTags();
+        model.addAttribute("tagsList", tagsList);
+        return "editAttraction";
+    }
+
 
     //POST-endpoint der ændrer på en eksisterende attraktion.
     // Kan ændre både navn og beskrivelse.
     // Kalder på service layer, som derefter kalder på repository layer.
     // Returnerer til klienten med status 200 (OK) når attraktionen blev ændret.
     // Returnerer status 500 (INTERNAL SERVER ERROR), hvis der opstår en fejl.
-    @PostMapping("/update")
+    /*@PostMapping("/update")
     public ResponseEntity<TouristAttraction> updateAttraction(@RequestBody TouristAttraction attraction) {
         service.updateAttraction(attraction.getName(), attraction);
         return new ResponseEntity<>(attraction, HttpStatus.OK);
+    }*/
+    @PostMapping("/update")
+    public String updateAttraction(Model model, @ModelAttribute("attraction") TouristAttraction attraction) {
+        model.addAttribute("attraction", attraction);
+        service.updateAttraction(attraction.getName(), attraction);
+        return "updateAttraction";
     }
+
 
 
     //POST-endpoint der sletter på en eksisterende attraktion.

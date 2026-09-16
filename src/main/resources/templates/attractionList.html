@@ -20,9 +20,11 @@
     </thead>
     <tbody>
     <tr th:each="touristattraction : ${attractionList}">
-        <td th:text="${touristattraction.getName}"></td>
-        <td th:text="${touristattraction.getDescription}"></td>
-        <td><button type="button">Opdater</button></td>
+        <td th:text="${touristattraction.name}"></td>
+        <td th:text="${touristattraction.description}"></td>
+        <td><a th:href="@{/attractions/{name}/edit(name=${touristattraction.name})}">
+            <button type="button">Opdater</button>
+        </a></td>
         <td><button type="button">Slet</button></td>
         <td><button type="button">Tags</button></td>
     </tr>

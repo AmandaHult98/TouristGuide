@@ -5,6 +5,7 @@ import com.example.touristguideapi.repository.TouristRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TouristService {
@@ -38,5 +39,9 @@ public class TouristService {
     // Tager imod et navn fra controlleren og sender det videre til en metode i repository
     public void removeAttraction(String name) {
         repository.removeAttraction(name);
+    }
+
+    public List<String> getCities() {
+        return repository.getCities();
     }
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/editAttraction.css}">
+    <title>Edit Attraction</title>
+</head>
+<body>
+
+<header>
+    <h1>Turist Guide</h1>
+</header>
+
+<div class="navBar">
+    <a href="/">Home</a>
+    <a href="attractions">Attraktioner</a>
+    <a href="attractions/Tivoli">Tivoli</a>
+    <div class="dropdown">Links
+        <div class="dropdown-content">
+            <ul>
+                <li>
+                    <a href="https://www.publictransport.dk/?gad_source=1&gad_campaignid=21354478750&gbraid=0AAAAAp9lQb8iV87klY0eNayVsJD3SATgL&gclid=Cj0KCQjwkt_UBhDMARIsALpnOAwp7IUP9wRvAfO8HP_fgTXF30QwHq_fUINC1Tf171FPbahQzvBeq1MaAoP4EALw_wcB">City
+                        Pass</a></li>
+                <li><a href="https://www.rejseplanen.dk/webapp/#!P|TP!histId|0!histKey|H910521">Rejseplanen</a></li>
+                <li>
+                    <a href="https://dantaxi.dk/?gad_source=1&gad_campaignid=22803504203&gbraid=0AAAAADlbdCKThs5_YWX6ii9U02-Lo-RFu&gclid=Cj0KCQjwkt_UBhDMARIsALpnOAyaSEHn4paKN8oowmTlScHjQ7_gvF3lp3mm2hhWO7fu-hWq7KxFX9saAlKBEALw_wcB">Dantaxi</a>
+                </li>
+                <li><a href="https://www.donkey.bike/da/cities/copenhagen">Lej en cykel</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="edit-box" align="center">
+    <div class="edit-style">
+        <h1>Ændring af informationer</h1><!--Fejl ved th:action fordi url'en der bliver kaldt skriver http://localhost:8080/attractions/attractions/update-->
+        <form
+                method="post"
+                th:action="@{attractions/update}"
+                th:object="${attraction}"
+        >
+            <label>Navn:</label>
+            <input type="text" th:value="*{name}" readonly/>
+            <br />
+            <label>Beskrivelse:</label>
+            <!--<input type="text" th:field="*{description}"/>-->
+            <textarea rows="5" cols="25" th:field="*{description}"/></textarea>
+            <br />
+            <label>By:</label>
+            <select th:field="*{city}">
+                <option th:each="city : ${cityList}" th:value="${city}" th:text="${city}"></option>
+            </select>
+            <br />
+            <!--<label>Tags:</label>
+            <select th:field="*{tags}">
+                <option th:each="tags : ${tagsList}"
+            </select>
+            <input type="checkbox" th:field="*{tags}" value="Arkitektur"/> Arkitektur
+            <input type="checkbox" th:field="*{tags}" value="Børnevenlig"/> Børnevenlig
+            <input type="checkbox" th:field="*{tags}" value="Historie"/> Historie
+            <br />-->
+            <div class="button-group">
+                <!--<button type="submit">OK</button>-->
+                <!--<a th:href="@{/attractions/update}">
+                    <button type="submit">OK</button>
+                </a>-->
+                <a href="/attractions/update">
+                    <button type="submit">OK</button>
+                </a>
+                <a th:href="@{/attractions}">
+                    <button type="button">Fortryd</button>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

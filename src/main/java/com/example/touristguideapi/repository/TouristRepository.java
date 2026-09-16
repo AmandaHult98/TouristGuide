@@ -1,9 +1,11 @@
 package com.example.touristguideapi.repository;
 
+import com.example.touristguideapi.model.Tags;
 import com.example.touristguideapi.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 /*
@@ -18,14 +20,18 @@ public class TouristRepository {
     // en arrayliste initialiseres med tre attraktioner for at vi har noget at teste ud fra.
     private ArrayList<TouristAttraction> touristAttractions = new ArrayList<>(
             List.of(
-                    new TouristAttraction("Tivoli", "Forlystelsespark i indre København"),
-                    new TouristAttraction("Kronborg", "Slot i Helsingør, hvor Hamlet foregår."),
-                    new TouristAttraction("Rundetårn", "Astronomisk tårn fra Christian IVs tid.")
+                    new TouristAttraction("Tivoli", "Forlystelsespark i indre København", List.of(Tags.BØRNEVENLIG, Tags.UNDERHOLDNING, Tags.KONCERT), "København"),
+                    new TouristAttraction("Kronborg", "Slot i Helsingør, hvor Hamlet foregår.", List.of(Tags.HISTORIE), "Helsingør"),
+                    new TouristAttraction("Rundetårn", "Astronomisk tårn fra Christian IVs tid.", List.of(Tags.ARKITEKTUR), "København")
             )
     );
 
     public ArrayList<TouristAttraction> getAllAttractions() {
         return touristAttractions;
+    }
+
+    public List<String> getCities() {
+        return Arrays.asList("København", "Helsingør", "Rodkilde");
     }
 
     // Tager et navn på en attraction og returnerer hele objektet, hvis det kan findes. Kaldes fra service.
