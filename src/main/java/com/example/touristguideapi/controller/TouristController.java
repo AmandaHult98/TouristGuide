@@ -74,7 +74,6 @@ public class TouristController {
         return new ResponseEntity<>(attraction, HttpStatus.OK);
     }
 
-
     //POST-endpoint der sletter på en eksisterende attraktion.
     // Kalder på service layer, som derefter kalder på repository layer.
     // Returnerer til klienten med status 200 (OK) når attraktionen blev slettet.
@@ -86,9 +85,9 @@ public class TouristController {
 
     @GetMapping("/{name}/tags")
     public String getAttractionTags(@PathVariable String name, Model model){
-        TouristAttraction attraction = getName(name).getBody();
-        // TouristAttraction attraction = service.findAttractionByName(name);
+        TouristAttraction attraction = service.findAttractionByName(name);
          model.addAttribute("attraction", attraction);
+         model.addAttribute("taglist", attraction.getTags());
         return "tags";
     }
 }
