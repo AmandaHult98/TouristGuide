@@ -17,11 +17,12 @@
         <li th:if="*{Tag.name() eq 'HISTORY'}">Historie</li>
         <li th:if="*{Tag.name() eq 'ART'}">Kunst</li>
         <li th:if="*{Tag.name() eq 'MUSEUM'}">Museum</li>
-        <li th:if="*{Tag.name() eq 'NATURE'}">>Natur</li>
+        <li th:if="*{Tag.name() eq 'NATURE'}">Natur</li>
         <li th:if="*{Tag.name() eq 'CASTLE'}">Slot</li>
         <li th:if="*{Tag.name() eq 'ZOO'}">Zoologisk Have</li>
     </ul>
 
-<button type="button" th:href="@{/attractions}">Tilbage</button>
-</body>
+<a th:href="@{/attractions}">
+    <button type="button">Tilbage</button>
+</a></body>
 </html>
