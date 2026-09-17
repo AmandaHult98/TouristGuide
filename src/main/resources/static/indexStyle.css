@@ -38,7 +38,7 @@ body {
     }
 }
 
-#main-header {
+header {
     grid-area: header;
     background-color: #4caf50;
     color: white;
