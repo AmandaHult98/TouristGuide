@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{tagsStyle.css}">
+    <link rel="stylesheet" th:href="@{/common.css}">
+    <link rel="stylesheet" th:href="@{/tagsStyle.css}">
 </head>
 <body>
 
 <h1 th:text="${attraction.name}"></h1>
-    <!-- tags skal evt være på dansk i stedet eller dette skal gøres anderledes så de skrives på dansk her -->
-<!--    <ul th:each="Tag : ${taglist}">-->
-<!--        <li th:text="*{Tag}"></li>-->
-    </ul>
     <!-- tags printet med dansk tekst ved hjælp af if statement check -->
     <ul th:each="Tag : ${taglist}">
         <li th:if="*{Tag.name() eq 'ARCHITECTURE'}"> Arkitektur</li>
@@ -24,5 +21,7 @@
         <li th:if="*{Tag.name() eq 'CASTLE'}">Slot</li>
         <li th:if="*{Tag.name() eq 'ZOO'}">Zoologisk Have</li>
     </ul>
+
+<button type="button" th:href="@{/attractions}">Tilbage</button>
 </body>
 </html>
