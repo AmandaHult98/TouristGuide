@@ -1,7 +1,6 @@
 package com.example.touristguideapi.repository;
 
-import com.example.touristguideapi.model.Tags;
-import com.example.touristguideapi.model.TouristAttraction;
+import com.example.touristguideapi.model.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -67,6 +66,8 @@ public class TouristRepository {
     // og så bruges dets index i .set metoden
     public void updateAttraction(String name, TouristAttraction updatedAttraction) {
         TouristAttraction attraction = findAttractionByName(name);
-        touristAttractions.set(touristAttractions.indexOf(attraction), updatedAttraction);
+        System.out.println(attraction); //null
+        System.out.println(touristAttractions.indexOf(attraction)); //-1
+        //touristAttractions.set(touristAttractions.indexOf(attraction), updatedAttraction); //pga attraction er null og har index -1 giver dette fejl
     }
 }

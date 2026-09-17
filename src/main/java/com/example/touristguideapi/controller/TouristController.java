@@ -1,7 +1,6 @@
 package com.example.touristguideapi.controller;
 
-import com.example.touristguideapi.model.Tags;
-import com.example.touristguideapi.model.TouristAttraction;
+import com.example.touristguideapi.model.*;
 import com.example.touristguideapi.service.TouristService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 @Controller
@@ -69,7 +69,7 @@ public class TouristController {
         List<String> cityList = service.getCities();
         model.addAttribute("cityList", cityList);
 
-        List<Tags> tagsList = attraction.getTags();
+        EnumSet<Tag> tagsList = attraction.getTags();
         model.addAttribute("tagsList", tagsList);
         return "editAttraction";
     }
@@ -89,6 +89,7 @@ public class TouristController {
     public String updateAttraction(Model model, @ModelAttribute("attraction") TouristAttraction attraction) {
         model.addAttribute("attraction", attraction);
         service.updateAttraction(attraction.getName(), attraction);
+        System.out.println("TEST!!!!!");
         return "updateAttraction";
     }
 

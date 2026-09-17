@@ -35,17 +35,16 @@
 
 <div class="edit-box" align="center">
     <div class="edit-style">
-        <h1>Ændring af informationer</h1><!--Fejl ved th:action fordi url'en der bliver kaldt skriver http://localhost:8080/attractions/attractions/update-->
+        <h1>Ændring af informationer</h1><!--Index out of bound i updateAttraction i repo-->
         <form
                 method="post"
-                th:action="@{attractions/update}"
+                th:action="@{/attractions/update}"
                 th:object="${attraction}"
         >
             <label>Navn:</label>
             <input type="text" th:value="*{name}" readonly/>
             <br />
             <label>Beskrivelse:</label>
-            <!--<input type="text" th:field="*{description}"/>-->
             <textarea rows="5" cols="25" th:field="*{description}"/></textarea>
             <br />
             <label>By:</label>
@@ -53,22 +52,24 @@
                 <option th:each="city : ${cityList}" th:value="${city}" th:text="${city}"></option>
             </select>
             <br />
-            <!--<label>Tags:</label>
-            <select th:field="*{tags}">
-                <option th:each="tags : ${tagsList}"
-            </select>
-            <input type="checkbox" th:field="*{tags}" value="Arkitektur"/> Arkitektur
-            <input type="checkbox" th:field="*{tags}" value="Børnevenlig"/> Børnevenlig
-            <input type="checkbox" th:field="*{tags}" value="Historie"/> Historie
-            <br />-->
+            <label>Tags:</label>
+            <input type="checkbox" th:field="*{tags}" value="ARCHITECTURE"/> Arkitektur
+            <input type="checkbox" th:field="*{tags}" value="ART"/> Kunst
+            <input type="checkbox" th:field="*{tags}" value="AMUSEMENT_PARK"/> Forlystelsespark
+            <input type="checkbox" th:field="*{tags}" value="CASTLE"/> Slot
+            <input type="checkbox" th:field="*{tags}" value="HISTORY"/> Historie
+            <input type="checkbox" th:field="*{tags}" value="KID_FRIENDLY"/> Børnevenlig
+            <input type="checkbox" th:field="*{tags}" value="MUSEUM"/> Museum
+            <input type="checkbox" th:field="*{tags}" value="NATURE"/> Natur
+            <input type="checkbox" th:field="*{tags}" value="ZOO"/> Zoo
             <div class="button-group">
-                <!--<button type="submit">OK</button>-->
+                <button type="submit">OK</button>
                 <!--<a th:href="@{/attractions/update}">
                     <button type="submit">OK</button>
                 </a>-->
-                <a href="/attractions/update">
+                <!--<a href="/attractions/update">
                     <button type="submit">OK</button>
-                </a>
+                </a>-->
                 <a th:href="@{/attractions}">
                     <button type="button">Fortryd</button>
                 </a>
@@ -76,7 +77,6 @@
         </form>
     </div>
 </div>
-
 
 </body>
 </html>
