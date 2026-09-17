@@ -26,7 +26,8 @@
             <button type="button">Opdater</button>
         </a></td>
         <td><button type="button">Slet</button></td>
-        <td><button type="button">Tags</button></td>
+        <td><a th:href="@{/attractions/{name}/tags(name=${touristattraction.name})}"><button type="button" >Tags</button></a>
+            </td>
     </tr>
     </tbody>
 </table>
