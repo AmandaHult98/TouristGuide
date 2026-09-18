@@ -8,10 +8,10 @@ body {
 }
 h1 {
     color: crimson;
-    margin-left: 0.5em;
     margin-top: 0.2em;
     margin-bottom: 0;
 }
+
 li, p {
     font-size: large;
     color: darkslategray;
@@ -29,7 +29,7 @@ hr {
 }
 
 .border {
-    padding: 1em;
+    padding: 1em 2em 0.5em;
     border: crimson dotted 0.5em;
 }
 
