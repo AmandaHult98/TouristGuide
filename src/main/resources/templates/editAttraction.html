@@ -42,7 +42,7 @@
                 th:object="${attraction}"
         >
             <label>Navn:</label>
-            <input type="text" th:value="*{name}" readonly/>
+            <input type="text" th:field="*{name}" readonly/>
             <br />
             <label>Beskrivelse:</label>
             <textarea rows="5" cols="25" th:field="*{description}"/></textarea>

@@ -89,8 +89,6 @@ public class TouristController {
     public String updateAttraction(Model model, @ModelAttribute("attraction") TouristAttraction attraction) {
         model.addAttribute("attraction", attraction);
         service.updateAttraction(attraction.getName(), attraction);
-        System.out.println("TEST!!!!!");
-        System.out.println(attraction); //name: null ???
         return "updateAttraction";
     }
 
