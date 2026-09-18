@@ -90,6 +90,7 @@ public class TouristController {
         model.addAttribute("attraction", attraction);
         service.updateAttraction(attraction.getName(), attraction);
         System.out.println("TEST!!!!!");
+        System.out.println(attraction); //name: null ???
         return "updateAttraction";
     }
 
