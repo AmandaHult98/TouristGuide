@@ -13,8 +13,8 @@
         <hr>
         <p th:text="${attraction.description}"></p>
         <ul th:each="Tag : ${taglist}">
-            <li th:if="*{Tag.name() eq 'ARCHITECTURE'}"> Arkitektur</li>
-            <li th:if="*{Tag.name() eq 'KID_FRIENDLY'}"> Børnevenligt</li>
+            <li th:if="*{Tag.name() eq 'ARCHITECTURE'}">Arkitektur</li>
+            <li th:if="*{Tag.name() eq 'KID_FRIENDLY'}">Børnevenligt</li>
             <li th:if="*{Tag.name() eq 'AMUSEMENT_PARK'}">Forlystelsespark</li>
             <li th:if="*{Tag.name() eq 'HISTORY'}">Historie</li>
             <li th:if="*{Tag.name() eq 'ART'}">Kunst</li>
