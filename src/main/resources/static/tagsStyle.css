@@ -1,9 +1,41 @@
+::marker {
+    content: "# ";
+    color: crimson;
+}
 body {
-    padding: 4em;
+    padding: 2em;
+    background-color: #4CAF50;
 }
 h1 {
     color: crimson;
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0;
 }
-button {
+li {
+    font-size: large;
+    color: darkslategray;
+}
+main {
+    border: white solid 0.4em;
+    background-color: white;
+    width: 450px;
+    max-width: 90vw;
+    padding: 0.5em;
+}
 
+hr {
+    color: crimson;
+}
+
+.border {
+    padding: 0.5em;
+    border: crimson dotted 0.5em;
+}
+
+.button-right {
+    display: flex;
+    align-items: end;
+    justify-content: right;
+    margin-right: 0.5em;
 }
