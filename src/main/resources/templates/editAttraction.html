@@ -35,7 +35,7 @@
 
 <div class="edit-box" align="center">
     <div class="edit-style">
-        <h1>Ændring af informationer</h1><!--Index out of bound i updateAttraction i repo-->
+        <h1>Ændring af informationer</h1>
         <form
                 method="post"
                 th:action="@{/attractions/update}"
@@ -64,12 +64,6 @@
             <input type="checkbox" th:field="*{tags}" value="ZOO"/> Zoo
             <div class="button-group">
                 <button type="submit">OK</button>
-                <!--<a th:href="@{/attractions/update}">
-                    <button type="submit">OK</button>
-                </a>-->
-                <!--<a href="/attractions/update">
-                    <button type="submit">OK</button>
-                </a>-->
                 <a th:href="@{/attractions}">
                     <button type="button">Fortryd</button>
                 </a>

@@ -89,6 +89,9 @@ public class TouristController {
     public String updateAttraction(Model model, @ModelAttribute("attraction") TouristAttraction attraction) {
         model.addAttribute("attraction", attraction);
         service.updateAttraction(attraction.getName(), attraction);
+
+        EnumSet<Tag> tagsList = attraction.getTags();
+        model.addAttribute("tagsList", tagsList);
         return "updateAttraction";
     }
 

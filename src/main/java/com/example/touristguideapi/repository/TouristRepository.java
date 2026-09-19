@@ -31,7 +31,7 @@ public class TouristRepository {
     }
 
     public List<String> getCities() {
-        return Arrays.asList("København", "Helsingør", "Rodkilde");
+        return Arrays.asList("København", "Helsingør", "Roskilde");
     }
 
     // Tager et navn på en attraction og returnerer hele objektet, hvis det kan findes. Kaldes fra service.
