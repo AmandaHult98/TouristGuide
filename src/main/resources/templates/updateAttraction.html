@@ -35,7 +35,7 @@
 
 
 <section class="confirmation-box">
-    <h2>Ændringer:</h2>
+    <h2><u>Ændringer gemt</u></h2>
     <b>Navn:</b><p th:text="${attraction.name}"></p>
     <br />
     <b>Beskrivelse:</b><p th:text="${attraction.description}"></p>
@@ -51,7 +51,7 @@
         <p th:if="*{Tag.name() eq 'HISTORY'}">Historie</p>
         <p th:if="*{Tag.name() eq 'ART'}">Kunst</p>
         <p th:if="*{Tag.name() eq 'MUSEUM'}">Museum</p>
-        <p th:if="*{Tag.name() eq 'NATURE'}">>Natur</p>
+        <p th:if="*{Tag.name() eq 'NATURE'}">Natur</p>
         <p th:if="*{Tag.name() eq 'CASTLE'}">Slot</p>
         <p th:if="*{Tag.name() eq 'ZOO'}">Zoologisk Have</p>
     </section>
