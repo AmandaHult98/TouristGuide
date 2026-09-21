@@ -24,13 +24,7 @@ public class TouristController {
     }
 
     // GET-endpoint, der henter alle turistattraktioner fra service layer.
-    // Returnerer til klienten med status 200 (OK).
-    /*@GetMapping()
-    public ResponseEntity<ArrayList<TouristAttraction>> getToursitAttrctions() {
-        ArrayList<TouristAttraction> attractions = service.getTouristAttractions();
-        return new ResponseEntity<>(attractions, HttpStatus.OK);
-    }*/
-
+    // Returnerer html-siden attractionList.
     @GetMapping()
     public String getToursitAttrctions(Model model) {
         ArrayList<TouristAttraction> attractions = service.getTouristAttractions();
@@ -61,6 +55,9 @@ public class TouristController {
         return ResponseEntity.status(201).body(attraction);
     }
 
+    /*GET-endpoint, der henter information om en specifik attraktion fra service layer og
+    * returnere html-siden editAttraction, der giver brugeren lov til at ændre på attraktionens oplysninger,
+    * bortset fra dens navn.*/
     @GetMapping("{name}/edit")
     public String editAttraction(Model model, @PathVariable String name) {
         TouristAttraction attraction = service.findAttractionByName(name);
@@ -75,16 +72,9 @@ public class TouristController {
     }
 
 
-    //POST-endpoint der ændrer på en eksisterende attraktion.
-    // Kan ændre både navn og beskrivelse.
-    // Kalder på service layer, som derefter kalder på repository layer.
-    // Returnerer til klienten med status 200 (OK) når attraktionen blev ændret.
-    // Returnerer status 500 (INTERNAL SERVER ERROR), hvis der opstår en fejl.
-    /*@PostMapping("/update")
-    public ResponseEntity<TouristAttraction> updateAttraction(@RequestBody TouristAttraction attraction) {
-        service.updateAttraction(attraction.getName(), attraction);
-        return new ResponseEntity<>(attraction, HttpStatus.OK);
-    }*/
+    /*POST-endpoint der gemmer de ændret oplysninger på attraktionen valgt fra endpointet "{name}/edit" og
+    * opdatere listen af attraktioner gennem service til repository'et.
+    * updateAttraction.html bliver returneret som viser de gemte oplysninger på attraktionen*/
     @PostMapping("/update")
     public String updateAttraction(Model model, @ModelAttribute("attraction") TouristAttraction attraction) {
         model.addAttribute("attraction", attraction);
