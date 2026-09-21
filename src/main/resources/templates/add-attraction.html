@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/common.css}">
+    <link rel="stylesheet" href="/addAttractionStyle.css">
+    <meta charset="UTF-8">
+    <title>Add attraction</title>
+</head>
+<h1>Her kan du tilføje en attraktion</h1>
+<body>
+<form th:action="@{/attractions/save}" method="post">
+    <label>Title:</label><br>
+    <input type="text" name="name">
+    <br />
+    <label>Beskrivelse:</label><br>
+    <textarea id="description" name="description" rows="2" cols="50">
+    </textarea>
+    <br />
+
+    <input type="checkbox" id="arkitektur" name="tags" value="ARCHITECTURE">
+    <label for="arkitektur">Arkitektur</label>
+    <input type="checkbox" id="kunst" name="tags" value="ART">
+    <label for="kunst">Kunst</label>
+    <input type="checkbox" id="Forlystelsespark" name="tags" value="AMUSEMENT_PARK">
+    <label for="Forlystelsespark">Forlystelsespark</label>
+    <input type="checkbox" id="borg" name="tags" value="CASTLE">
+    <label for="borg">Borg</label>
+    <input type="checkbox" id="Historie" name="tags" value="HISTORY">
+    <label for="Historie">Historie</label>
+    <input type="checkbox" id="Børnevenligt" name="tags" value="KID_FRIENDLY">
+    <label for="Børnevenligt">Børnevenligt</label>
+    <input type="checkbox" id="Museum" name="tags" value="MUSEUM">
+    <label for="Museum">Museum</label>
+    <input type="checkbox" id="Naturoplevelse" name="tags" value="NATURE">
+    <label for="Naturoplevelse">Naturoplevelse</label>
+    <input type="checkbox" id="Zoologisk Have" name="tags" value="ZOO">
+    <label for="Zoologisk Have">Zoologisk Have</label>
+    <br />
+
+    <input type="submit" value="Tilføj">
+
+</form>
+
+
+</body>
+</html>

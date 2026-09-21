@@ -4,6 +4,7 @@
 >
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{common.css}">
     <link rel="stylesheet" th:href="@{attractionListStyle.css}">
     <title>Attraction List</title>
 </head>
@@ -32,7 +33,10 @@
     </tbody>
 </table>
 
-<button class="tilføj" type="button" th:href="@{/addAttraction}">Tilføj attraktion</button>
+
+<a class="tilføj" th:href="@{/attractions/add-attraction}">
+    <button type="button">Tilføj attraktion</button>
+</a>
 
 </body>
 </html>
