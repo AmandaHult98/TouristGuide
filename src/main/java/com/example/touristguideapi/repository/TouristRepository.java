@@ -59,7 +59,7 @@ public class TouristRepository {
         }
     }
 
-    // Tager imod et navn og en attraktion (updatedeAttraction) og
+    // Tager imod et navn og en attraktion (updatedAttraction) og
     // sætter en eksisterende attraktion (attraction) til at være i lig med
     // den attraktion (updatedAttraction), den har taget imod.
     // Navnet bruges til at finde den attraktion der skal ændres
