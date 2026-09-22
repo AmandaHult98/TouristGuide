@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${attraction.name}">Attraktion</title>
+    <link rel="stylesheet" th:href="@{/common.css}">
+</head>
+<body>
+
+<h1 th:text="${attraction.name}"></h1>
+
+<table>
+    <tr>
+        <th>Beskrivelse</th>
+        <td th:text="${attraction.description}"></td>
+    </tr>
+    <tr>
+        <th>Tags</th>
+        <td>
+            <ul>
+                <li th:each="tag : ${attraction.tags}">
+                    <th:block th:switch="${tag.name()}">
+                        <span th:case="'ARCHITECTURE'">Arkitektur</span>
+                        <span th:case="'ART'">Kunst</span>
+                        <span th:case="'AMUSEMENT_PARK'">Forlystelsespark</span>
+                        <span th:case="'CASTLE'">Slot</span>
+                        <span th:case="'HISTORY'">Historie</span>
+                        <span th:case="'KID_FRIENDLY'">Børnevenligt</span>
+                        <span th:case="'MUSEUM'">Museum</span>
+                        <span th:case="'NATURE'">Natur</span>
+                        <span th:case="'ZOO'">Zoologisk Have</span>
+                        <span th:case="*" th:text="${tag}"></span>
+                    </th:block>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<a th:href="@{/attractions}">
+    <button type="button">Tilbage til oversigten</button>
+</a>
+
+</body>
+</html>
