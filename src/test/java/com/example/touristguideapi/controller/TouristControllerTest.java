@@ -107,10 +107,8 @@ class TouristControllerTest {
         TouristAttraction captured = captor.getValue();
         assertEquals("Den lille havfrue", captured.getName());
         assertEquals("Figur fra H.C.Andersens eventyr.", captured.getDescription());
-        //assertEquals("København", captured.getCity());
+        assertEquals("København", captured.getCity());
         assertEquals(EnumSet.of(Tag.ART), captured.getTags());
-        //assertNotNull(captured.getOrderId()); // UUID generated as expected*/
-
     }
 
     @Test
