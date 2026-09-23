@@ -45,8 +45,12 @@ public class TouristRepository {
     }
 
     // Tilføjer et attraktion objekt til arraylisten. Kaldes fra service.
-    public void addAttraction(TouristAttraction attraction) {
+    /*public void addAttraction(TouristAttraction attraction) {
         touristAttractions.add(attraction);
+    }*/
+    public TouristAttraction addAttraction(TouristAttraction attraction) {
+        touristAttractions.add(attraction);
+        return attraction;
     }
 
     public void removeAttraction(String name) {

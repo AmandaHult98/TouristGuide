@@ -55,7 +55,10 @@ class TouristControllerTest {
     }
 
     @Test
-    void getName() {
+    void getName() throws Exception{
+        mockMvc.perform(get("/attractions/Tivoli"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("attractionDetails"));
     }
 
     //Her skal der testes at en GET request til /add-attraction endpointet returnerer en
@@ -75,14 +78,15 @@ class TouristControllerTest {
     void shouldAddAttraction() throws Exception {
         //Default sæt data, som vi kan teste.
         TouristAttraction touristAttraction = new TouristAttraction("Den lille havfrue", "Figur fra H.C.Andersens eventyr.", "København", EnumSet.of(Tag.ART));
-        //when(touristService.addAttraction(any(TouristAttraction.class))).thenReturn(touristAttraction); //Her definerer vi adfærden
+        when(touristService.addAttraction(any(TouristAttraction.class))).thenReturn(touristAttraction); //Her definerer vi adfærden
 
-        //Simuler en POST request til /order endpointet med de nødvendige parametre:
+        //Simuler en POST request til /save endpointet med de nødvendige parametre:
         mockMvc.perform(post("/attractions/save")
                 .param("name", "Den lille havfrue")
                 .param("description", "Figur fra H.C.Andersens eventyr.")
-                .param("city", "København"))
+                .param("city", "København")
                 //.param("tags", EnumSet.of(Tag.ART))
+                .param("tags", "ART"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/successful"));
 
@@ -111,6 +115,14 @@ class TouristControllerTest {
         assertEquals(EnumSet.of(Tag.ART), captured.getTags());
     }
 
+
+    @Test
+    void shouldEditAttraction() throws Exception{
+        mockMvc.perform(get("/attractions/Tivoli/edit"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("editAttraction"));
+    }
+
     @Test
     void updateAttraction() {
     }
@@ -120,6 +132,9 @@ class TouristControllerTest {
     }
 
     @Test
-    void getAttractionTags() {
+    void shouldGetAttractionTags() throws Exception {
+        mockMvc.perform(get("/attractions/Tivoli/tags"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("tags"));
     }
 }
