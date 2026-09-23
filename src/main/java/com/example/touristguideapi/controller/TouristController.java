@@ -99,11 +99,6 @@ public class TouristController {
         return "deleted";
     }
 
-//    @GetMapping("/delete-confirmation")
-//    public String deleteConfirmation(){
-//        return "deleted";
-//    }
-
     @GetMapping("/{name}/tags")
     public String getAttractionTags(@PathVariable String name, Model model){
         TouristAttraction attraction = service.findAttractionByName(name);
