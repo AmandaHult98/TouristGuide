@@ -7,12 +7,18 @@ public class TouristAttraction {
     private String description;
     private String city;
     private EnumSet<Tag> tags;
+    //private List<Tags> tags;
+
+    public TouristAttraction() {
+
+    }
+
 
     public TouristAttraction(String name, String description, String city, EnumSet<Tag> tags) {
         this.name = name;
         this.description = description;
-        this.city = city;
         this.tags = tags;
+        this.city = city;
     }
 
     public String getName() {
@@ -21,6 +27,10 @@ public class TouristAttraction {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public EnumSet<Tag> getTags() {
@@ -35,12 +45,19 @@ public class TouristAttraction {
         this.description = description;
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public void setTags(EnumSet<Tag> tags) {
         this.tags = tags;
     }
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nDescription: " + description;
+        return "Name: " + name +
+                "\nDescription: " + description +
+                "\nTags: " + tags +
+                "\nCity: " + city;
     }
 }

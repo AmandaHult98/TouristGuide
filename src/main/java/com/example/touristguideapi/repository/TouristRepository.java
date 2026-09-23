@@ -1,11 +1,11 @@
 package com.example.touristguideapi.repository;
 
-import com.example.touristguideapi.model.Tag;
-import com.example.touristguideapi.model.TouristAttraction;
+import com.example.touristguideapi.model.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 /*
@@ -28,6 +28,10 @@ public class TouristRepository {
 
     public ArrayList<TouristAttraction> getAllAttractions() {
         return touristAttractions;
+    }
+
+    public List<String> getCities() {
+        return Arrays.asList("København", "Helsingør", "Roskilde");
     }
 
     // Tager et navn på en attraction og returnerer hele objektet, hvis det kan findes. Kaldes fra service.
@@ -55,7 +59,7 @@ public class TouristRepository {
         }
     }
 
-    // Tager imod et navn og en attraktion (updatedeAttraction) og
+    // Tager imod et navn og en attraktion (updatedAttraction) og
     // sætter en eksisterende attraktion (attraction) til at være i lig med
     // den attraktion (updatedAttraction), den har taget imod.
     // Navnet bruges til at finde den attraktion der skal ændres
