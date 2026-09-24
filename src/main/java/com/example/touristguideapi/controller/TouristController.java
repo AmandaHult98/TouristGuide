@@ -36,27 +36,32 @@ public class TouristController {
         return "attractionList";
     }
 
-    // GET-endpoint, der henter information om en specifik attraktion fra service layer.
-    // Returnerer til klienten med status 200 (OK) hvis attraktionen findes.
-    // Returnerer status 404 (NOT FOUND) hvis attraktionen ikke findes.
-    @GetMapping("{name}")
-    public ResponseEntity<TouristAttraction> getName(@PathVariable String name) {
+    // GET-endpoint, der viser en enkelt turistattraktion på sin egen HTML side.
+    // Attraktionen lægges i Model, så Thymeleaf kan vise dens data.
+    // Findes den ikke, sendes brugeren tilbage til oversigten.
+    @GetMapping("/{name}")
+    public String getName(@PathVariable String name, Model model) {
         TouristAttraction attraction = service.findAttractionByName(name);
+
         if (attraction == null) {
-            return new ResponseEntity<>(attraction, HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(attraction, HttpStatus.OK);
+            return "redirect:/attractions";
         }
+
+        model.addAttribute("attraction", attraction);
+        return "attractionDetails";
     }
 
 
-    // POST-endpoint der tilføjer en attraktion (navn og beskrivelse) til attraktionslisten.
-    // Kalder på service layer, som derefter kalder på repository layer.
-    // Returnerer til klienten med status 201 (CREATED) når attraktionen blev oprettet.
-    @PostMapping("/add")
-    public ResponseEntity<TouristAttraction> addAttraction(@RequestBody TouristAttraction attraction) {
+    @GetMapping("/add-attraction")
+    public String submitAttraction() {
+        return "add-attraction";
+    }
+
+    @PostMapping("/save")
+    public String addAttraction(TouristAttraction attraction, Model model) {
         service.addAttraction(attraction);
-        return ResponseEntity.status(201).body(attraction);
+        model.addAttribute("attraction", attraction);
+        return "successful";
     }
 
 

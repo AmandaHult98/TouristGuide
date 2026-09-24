@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/common.css}">
+    <title>Successful</title>
+</head>
+<h>Successfully added</h>
+<body>
+<p>Attraction name: <span th:text="${attraction.name}"></span></p>
+<p>Description <span th:text="${attraction.description}"></span></p>
+<br />
+<a class="tilføj" th:href="@{/attractions}">
+    <button type="button">Tilbage</button>
+</a>
+</body>
+</html>
