@@ -92,10 +92,11 @@ public class TouristController {
     //POST-endpoint der sletter på en eksisterende attraktion.
     // Kalder på service layer, som derefter kalder på repository layer.
     // Returnerer til klienten med status 200 (OK) når attraktionen blev slettet.
-    @PostMapping("/delete/{name}")
-    public ResponseEntity<TouristAttraction> removeAttraction(@PathVariable String name, @RequestBody TouristAttraction attraction) {
+    @PostMapping("/{name}/delete")
+    public String removeAttraction(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
         service.removeAttraction(name);
-        return new ResponseEntity<>(attraction, HttpStatus.OK);
+        return "deleted";
     }
 
     @GetMapping("/{name}/tags")
