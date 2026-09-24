@@ -23,8 +23,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @WebMvcTest(TouristController.class)
@@ -45,8 +44,8 @@ class TouristControllerTest {
     void tearDown() {
     }
 
-    //Her skal der testes at en GET request til /attractions endpointet returnerer en 200 OK status
-    //og view navnet attractionList.
+    /*Her skal der testes at en GET request til /attractions endpointet returnerer en 200 OK status
+    * og view navnet html siden "attractionList".*/
     @Test
     void shouldGetToursitAttrctions() throws Exception {
         mockMvc.perform(get("/attractions"))
@@ -54,15 +53,20 @@ class TouristControllerTest {
                 .andExpect(view().name("attractionList"));
     }
 
+    /*Her skal der testes at en GET request til /{name} endpointet returnerer en 200 OK status
+    * og view navnet på html siden "attractionDetails".*/
     @Test
     void getName() throws Exception{
+        TouristAttraction attraction = new TouristAttraction("Tivoli", "Forlystelsespark i indre København", "København", EnumSet.of(Tag.AMUSEMENT_PARK, Tag.KID_FRIENDLY));
+        when(touristService.findAttractionByName(attraction.getName())).thenReturn(attraction);
+
         mockMvc.perform(get("/attractions/Tivoli"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("attractionDetails"));
     }
 
-    //Her skal der testes at en GET request til /add-attraction endpointet returnerer en
-    // 200 OK status og view navnet add-attraction.
+    /*Her skal der testes at en GET request til /add-attraction endpointet returnerer en
+    * 200 OK status og view navnet på html siden "add-attraction".*/
     @Test
     void shouldSubmitAttraction() throws Exception {
         mockMvc.perform(get("/attractions/add-attraction"))
@@ -71,39 +75,22 @@ class TouristControllerTest {
 
     }
 
-    //Her skal der testes en form submission via en POST request med parametere til /save endpointet.
-    //Konfigurer den mockede TouristService til at returnere et TouristAttraction objekt,
-    // når metoden addAttraction() kaldes med et vilkårligt TouristAttraction-objekt som argument (any(TouristAttraction.class))
+    /*Her skal der testes en form submission via en POST request med parameter til /save endpointet returnerer en
+    * 200 OK status og view navnet på html siden "add-attraction".*/
     @Test
     void shouldAddAttraction() throws Exception {
-        //Default sæt data, som vi kan teste.
-        TouristAttraction touristAttraction = new TouristAttraction("Den lille havfrue", "Figur fra H.C.Andersens eventyr.", "København", EnumSet.of(Tag.ART));
-        when(touristService.addAttraction(any(TouristAttraction.class))).thenReturn(touristAttraction); //Her definerer vi adfærden
-
         //Simuler en POST request til /save endpointet med de nødvendige parametre:
         mockMvc.perform(post("/attractions/save")
                 .param("name", "Den lille havfrue")
                 .param("description", "Figur fra H.C.Andersens eventyr.")
                 .param("city", "København")
-                //.param("tags", EnumSet.of(Tag.ART))
                 .param("tags", "ART"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("/successful"));
+                .andExpect(view().name("successful"));
 
-        //Dernæste vil man gerne verificere at servicemetoden bliver kaldt med de forventede argumenter.
-        //Service objeketet er mocket med @MockitoBean og derfor den "rigtige" service metode bliver ikke udført,
-        // men returneres værdien angivet i when(...).thenReturn(...) konfigurationen.
-
+        //Dernæst vil man gerne verificere at servicemetoden bliver kaldt med de forventede argumenter.
         //Mockitos verify() funktion bruges til at verificere at service metoden addAttraction() bliver kaldt og
         // med det forventede touristAttraction argument.
-
-        //Testmetoden vil dog fejle her fordi touristAttraction objektet i when(...).thenReturn(...) og i verify(...) er to
-        // forskellige objekter og selvom equals() og hashCode() i TouristAttraction er overskrevet (overridden) til at
-        // sammenligne objekternes indhold dvs. attributterne, så vil Mockito ikke kunne matche dem i dette tilfælde
-        // fordi touristAttraction attributten orderId er et random genereret UUID allokeret ved objektets oprettelse.
-
-        //For at løse dette, kan ArgumentCaptor bruges til at fange det faktiske TouristAttraction objekt,
-        // der bliver sendt til addAttraction() metoden, og derefter verificere dets attributter.
 
         ArgumentCaptor<TouristAttraction> captor = ArgumentCaptor.forClass(TouristAttraction.class);
         verify(touristService).addAttraction(captor.capture());
@@ -115,26 +102,70 @@ class TouristControllerTest {
         assertEquals(EnumSet.of(Tag.ART), captured.getTags());
     }
 
-
+    /*Her skal der testes at en GET request til /{name}/edit endpointet returnerer en
+     * 200 OK status og view navnet på html siden "editAttraction".*/
     @Test
     void shouldEditAttraction() throws Exception{
+        TouristAttraction attraction = new TouristAttraction("Tivoli", "Forlystelsespark i indre København", "København", EnumSet.of(Tag.AMUSEMENT_PARK, Tag.KID_FRIENDLY));
+        when(touristService.findAttractionByName(attraction.getName())).thenReturn(attraction);
+
         mockMvc.perform(get("/attractions/Tivoli/edit"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("editAttraction"));
     }
 
+    /*Her skal der testes at en POST request til /update endpointet returnerer en
+     * 200 OK status og view navnet på html siden "updateAttraction".*/
     @Test
-    void updateAttraction() {
+    void updateAttraction() throws Exception {
+        //Simuler en POST request til /update endpointet med de nødvendige parametre:
+        mockMvc.perform(post("/attractions/update")
+                        .param("name", "Tivoli")
+                        .param("description", "Forlystelsespark i indre København")
+                        .param("city", "København")
+                        .param("tags", "AMUSEMENT_PARK"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("updateAttraction"));
+
+        ArgumentCaptor<TouristAttraction> captor = ArgumentCaptor.forClass(TouristAttraction.class);
+        verify(touristService).updateAttraction("Tivoli", captor.capture());
+        //verify(touristService).updateAttraction("Tivoli", updatedAttraction);
+
+        TouristAttraction captured = captor.getValue();
+        assertEquals("Tivoli", captured.getName());
+        assertEquals("Forlystelsespark i indre København", captured.getDescription());
+        assertEquals("København", captured.getCity());
+        assertEquals(EnumSet.of(Tag.AMUSEMENT_PARK), captured.getTags());
     }
 
+    /*Her skal der testes at en POST request til /delete/{name} endpointet returnerer en
+     * 200 OK status og view navnet på html siden "deleted".*/
     @Test
-    void removeAttraction() {
+    void removeAttraction() throws Exception {
+        TouristAttraction touristAttraction = new TouristAttraction("Den lille havfrue", "Figur fra H.C.Andersens eventyr.", "København", EnumSet.of(Tag.ART));
+        //when(touristService.removeAttraction(touristAttraction.getName()).thenReturn(touristAttraction));
+
+        touristService.removeAttraction(touristAttraction.getName());
+
+        mockMvc.perform(post("/attractions/delete/Tivoli"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("deleted"));
+
+        verify(touristService).removeAttraction(touristAttraction.getName());
+
     }
 
+    /*Her skal der testes at en GET request til /{name}/tags endpointet returnerer en
+     * 200 OK status og view navnet på html siden "tags".*/
     @Test
     void shouldGetAttractionTags() throws Exception {
+        TouristAttraction attraction = new TouristAttraction("Tivoli", "Forlystelsespark i indre København", "København", EnumSet.of(Tag.AMUSEMENT_PARK, Tag.KID_FRIENDLY));
+        when(touristService.findAttractionByName(attraction.getName())).thenReturn(attraction);
+
         mockMvc.perform(get("/attractions/Tivoli/tags"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("tags"));
+                .andExpect(view().name("tags"))
+                .andExpect(model().attributeExists("taglist"))
+                .andExpect(model().attribute("attraction", attraction));
     }
 }

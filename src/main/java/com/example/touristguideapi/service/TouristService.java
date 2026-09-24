@@ -27,12 +27,8 @@ public class TouristService {
     }
 
     // Tager imod en attraction fra controlleren og sender det videre til repository
-    /*public void addAttraction(TouristAttraction attraction) {
+    public void addAttraction(TouristAttraction attraction) {
         repository.addAttraction(attraction);
-    }*/
-    public TouristAttraction addAttraction(TouristAttraction attraction) {
-        repository.addAttraction(attraction);
-        return attraction;
     }
 
     // Tager imod et navn og en attraction fra controlleren og sender det videre til metoden i repository.
