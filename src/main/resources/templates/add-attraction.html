@@ -7,59 +7,59 @@
 </head>
 <h1>Her kan du tilføje en attraktion</h1>
 <body>
+<br />
 <form th:action="@{/attractions/save}" method="post">
     <label>Title:</label><br>
-    <input type="text" name="name">
+    <input type="text" name="name" required>
     <br />
     <label>Beskrivelse:</label><br>
-    <textarea id="description" name="description" rows="2" cols="50">
-    </textarea>
+    <textarea id="description" name="description" rows="2" cols="50" required></textarea>
     <br />
 
     <div class="tags">
 
         <div>
-            <input type="checkbox" id="arkitektur" name="tags" value="ARCHITECTURE">
+            <input type="checkbox" style="float: left;" id="arkitektur" name="tags" value="ARCHITECTURE">
             <label for="arkitektur">Arkitektur</label>
         </div>
 
         <div>
-            <input type="checkbox" id="kunst" name="tags" value="ART">
+            <input type="checkbox" style="float: left;" id="kunst" name="tags" value="ART">
             <label for="kunst">Kunst</label>
         </div>
 
         <div>
-            <input type="checkbox" id="Forlystelsespark" name="tags" value="AMUSEMENT_PARK">
+            <input type="checkbox" style="float: left;" id="Forlystelsespark" name="tags" value="AMUSEMENT_PARK">
             <label for="Forlystelsespark">Forlystelsespark</label>
         </div>
 
         <div>
-            <input type="checkbox" id="borg" name="tags" value="CASTLE">
+            <input type="checkbox" style="float: left;" id="borg" name="tags" value="CASTLE">
             <label for="borg">Borg</label>
         </div>
 
         <div>
-            <input type="checkbox" id="Historie" name="tags" value="HISTORY">
+            <input type="checkbox" style="float: left;" id="Historie" name="tags" value="HISTORY">
             <label for="Historie">Historie</label>
         </div>
 
         <div>
-            <input type="checkbox" id="Børnevenligt" name="tags" value="KID_FRIENDLY">
+            <input type="checkbox" style="float: left;" id="Børnevenligt" name="tags" value="KID_FRIENDLY">
             <label for="Børnevenligt">Børnevenligt</label>
         </div>
 
         <div>
-            <input type="checkbox" id="Museum" name="tags" value="MUSEUM">
+            <input type="checkbox" style="float: left;" id="Museum" name="tags" value="MUSEUM">
             <label for="Museum">Museum</label>
         </div>
 
         <div>
-            <input type="checkbox" id="Naturoplevelse" name="tags" value="NATURE">
+            <input type="checkbox" style="float: left;" id="Naturoplevelse" name="tags" value="NATURE">
             <label for="Naturoplevelse">Naturoplevelse</label>
         </div>
 
         <div>
-            <input type="checkbox" id="Zoologisk Have" name="tags" value="ZOO">
+            <input type="checkbox" style="float: left;" id="Zoologisk Have" name="tags" value="ZOO">
             <label for="Zoologisk Have">Zoologisk Have</label>
         </div>
 
