@@ -133,7 +133,7 @@ class TouristControllerTest {
         assertEquals(EnumSet.of(Tag.AMUSEMENT_PARK), captured.getTags());
     }*/
 
-    /*Her skal der testes at en POST request til /delete/{name} endpointet returnerer en
+    /*Her skal der testes at en POST request til /{name}/delete endpointet returnerer en
      * 200 OK status og view navnet på html siden "deleted".*/
     @Test
     void removeAttraction() throws Exception {
