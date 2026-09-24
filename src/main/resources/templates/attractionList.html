@@ -23,9 +23,18 @@
     <tr th:each="touristattraction : ${attractionList}">
         <td th:text="${touristattraction.name}"></td>
         <td th:text="${touristattraction.description}"></td>
-        <td><button type="button">Opdater</button></td>
-        <td><button type="button">Slet</button></td>
-        <td><a th:href="@{/attractions/{name}/tags(name=${touristattraction.name})}"><button type="button" >Tags</button></a>
+        <td><a th:href="@{/attractions/{name}/edit(name=${touristattraction.name})}">
+            <button type="button">Opdater</button>
+        </a></td>
+        <td>
+            <form th:action="@{/attractions/{name}/delete(name=${touristattraction.name})}"
+                  method="post">
+                <button type="submit">Slet</button>
+            </form>
+        </td>
+        <td><a th:href="@{/attractions/{name}/tags(name=${touristattraction.name})}">
+            <button type="button" >Tags</button>
+        </a>
             </td>
     </tr>
     </tbody>
