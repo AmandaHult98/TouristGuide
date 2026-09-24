@@ -40,10 +40,16 @@
     </tbody>
 </table>
 
+<div class="horizontal-container">
+    <a class="tilføj" th:href="@{/attractions/add-attraction}">
+        <button type="button">Tilføj attraktion</button>
+    </a>
+    <br>
+    <a th:href="@{/}">
+        <button type="button">Tilbage til hovedside</button>
+    </a>
+</div>
 
-<a class="tilføj" th:href="@{/attractions/add-attraction}">
-    <button type="button">Tilføj attraktion</button>
-</a>
 
 </body>
 </html>
