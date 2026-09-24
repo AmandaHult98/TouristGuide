@@ -32,17 +32,19 @@ public class TouristController {
         return "attractionList";
     }
 
-    // GET-endpoint, der henter information om en specifik attraktion fra service layer.
-    // Returnerer til klienten med status 200 (OK) hvis attraktionen findes.
-    // Returnerer status 404 (NOT FOUND) hvis attraktionen ikke findes.
-    @GetMapping("{name}")
-    public ResponseEntity<TouristAttraction> getName(@PathVariable String name) {
+    // GET-endpoint, der viser en enkelt turistattraktion på sin egen HTML side.
+    // Attraktionen lægges i Model, så Thymeleaf kan vise dens data.
+    // Findes den ikke, sendes brugeren tilbage til oversigten.
+    @GetMapping("/{name}")
+    public String getName(@PathVariable String name, Model model) {
         TouristAttraction attraction = service.findAttractionByName(name);
+
         if (attraction == null) {
-            return new ResponseEntity<>(attraction, HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(attraction, HttpStatus.OK);
+            return "redirect:/attractions";
         }
+
+        model.addAttribute("attraction", attraction);
+        return "attractionDetails";
     }
 
 
@@ -92,10 +94,11 @@ public class TouristController {
     //POST-endpoint der sletter på en eksisterende attraktion.
     // Kalder på service layer, som derefter kalder på repository layer.
     // Returnerer til klienten med status 200 (OK) når attraktionen blev slettet.
-    @PostMapping("/delete/{name}")
-    public ResponseEntity<TouristAttraction> removeAttraction(@PathVariable String name, @RequestBody TouristAttraction attraction) {
+    @PostMapping("/{name}/delete")
+    public String removeAttraction(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
         service.removeAttraction(name);
-        return new ResponseEntity<>(attraction, HttpStatus.OK);
+        return "deleted";
     }
 
     @GetMapping("/{name}/tags")
