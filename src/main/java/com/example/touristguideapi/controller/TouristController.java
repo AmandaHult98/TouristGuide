@@ -39,7 +39,7 @@ public class TouristController {
     // GET-endpoint, der viser en enkelt turistattraktion på sin egen HTML side.
     // Attraktionen lægges i Model, så Thymeleaf kan vise dens data.
     // Findes den ikke, sendes brugeren tilbage til oversigten.
-    @GetMapping("{name}")
+    @GetMapping("/{name}")
     public String getName(@PathVariable String name, Model model) {
         TouristAttraction attraction = service.findAttractionByName(name);
 
