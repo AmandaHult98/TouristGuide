@@ -15,4 +15,4 @@ VALUES ('ARCHITECTURE'),
        ('KID_FRIENDLY'),
        ('MUSEUM'),
        ('NATURE'),
-       ('ZOO')
+       ('ZOO');
