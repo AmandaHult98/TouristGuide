@@ -1,6 +1,6 @@
 create database  if not exists touristguide
        character set utf8mb4;
-USE toursitguide;
+USE touristguide;
 
 DROP TABLE IF EXISTS tag;
 
