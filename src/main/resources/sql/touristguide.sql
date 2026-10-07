@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS tag;
 
 CREATE TABLE IF NOT EXISTS tag
 (
-    tag_id   int AUTO_INCREMENT PRIMARY KEY,
+    tag_id   INT AUTO_INCREMENT PRIMARY KEY,
     tag_name VARCHAR(100)
 );
 
@@ -22,10 +22,10 @@ DROP TABLE IF EXISTS tourist_attraction;
 
 CREATE TABLE IF NOT EXISTS tourist_attraction
 (
-    attraction_id int AUTO_INCREMENT PRIMARY KEY,
+    attraction_id INT AUTO_INCREMENT PRIMARY KEY,
     name          VARCHAR(50),
     description   VARCHAR(300),
-    city_id      INT,
+    city_id       INT,
     tag_id        INT,
     FOREIGN KEY (city_id)
         REFERENCES city (city_id),
