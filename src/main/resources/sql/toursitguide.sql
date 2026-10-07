@@ -41,4 +41,4 @@ CREATE TABLE IF NOT EXISTS city
     city_name     VARCHAR(50),
     FOREIGN KEY (attraction_id)
         REFERENCES tourist_attraction (attraction_id)
-)
+);
