@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS tourist_attraction
     description   VARCHAR(300),
     city_id      INT,
     tag_id        INT,
-    FOREIGN KEY (postcode)
+    FOREIGN KEY (city_id)
         REFERENCES city (city_id),
     FOREIGN KEY (tag_id)
         REFERENCES tag (tag_id)
@@ -42,6 +42,6 @@ DROP TABLE IF EXISTS city;
 
 CREATE TABLE IF NOT EXISTS city
 (
-    city_id      INT AUTO INCREMENT PRIMARY KEY,
+    city_id      INT AUTO_INCREMENT PRIMARY KEY,
     city_name     VARCHAR(50)
 );
