@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS tag;
 CREATE TABLE IF NOT EXISTS tag
 (
     tag_id   int AUTO_INCREMENT PRIMARY KEY,
-    tag_name VARCHAR(100)
+    /*tag_name VARCHAR(100)*/
+    tag_name ENUM('ARCHITECTURE', 'ART', 'AMUSEMENT_PARK', 'CASTLE', 'HISTORY', 'KID_FRIENDLY', 'MUSEUM', 'NATURE', 'ZOO') NOT NULL
 );
 
 DROP TABLE IF EXISTS tourist_attraction;
