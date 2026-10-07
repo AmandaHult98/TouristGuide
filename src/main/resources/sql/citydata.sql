@@ -1,11 +1,5 @@
 USE touristguide;
 
-CREATE TABLE IF NOT EXISTS city
-(
-    city_id       INT AUTO_INCREMENT PRIMARY KEY,
-    city_name     VARCHAR(50)
-);
-
 INSERT INTO city (city_name)
 VALUES ('Aalborg'),
        ('Aarhus'),
