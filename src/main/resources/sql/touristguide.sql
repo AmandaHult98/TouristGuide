@@ -11,16 +11,24 @@ CREATE TABLE IF NOT EXISTS tag
     tag_name ENUM('ARCHITECTURE', 'ART', 'AMUSEMENT_PARK', 'CASTLE', 'HISTORY', 'KID_FRIENDLY', 'MUSEUM', 'NATURE', 'ZOO') NOT NULL
 );
 
+DROP TABLE IF EXISTS city;
+
+CREATE TABLE IF NOT EXISTS city
+(
+    city_id      INT AUTO_INCREMENT PRIMARY KEY,
+    city_name     VARCHAR(50)
+);
+
 DROP TABLE IF EXISTS tourist_attraction;
 
 CREATE TABLE IF NOT EXISTS tourist_attraction
 (
-    attraction_id int AUTO_INCREMENT PRIMARY KEY,
+    attraction_id INT AUTO_INCREMENT PRIMARY KEY,
     name          VARCHAR(50),
     description   VARCHAR(300),
-    city_id      INT,
+    city_id       INT,
     tag_id        INT,
-    FOREIGN KEY (postcode)
+    FOREIGN KEY (city_id)
         REFERENCES city (city_id),
     FOREIGN KEY (tag_id)
         REFERENCES tag (tag_id)
@@ -37,12 +45,4 @@ CREATE TABLE IF NOT EXISTS attraction_tags
         REFERENCES tag (tag_id),
     FOREIGN KEY (attraction_id)
         REFERENCES tourist_attraction (attraction_id)
-);
-
-DROP TABLE IF EXISTS city;
-
-CREATE TABLE IF NOT EXISTS city
-(
-    city_id      INT AUTO INCREMENT PRIMARY KEY,
-    city_name     VARCHAR(50)
 );
