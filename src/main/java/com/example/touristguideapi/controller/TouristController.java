@@ -23,6 +23,7 @@ public class TouristController {
 
     }
 
+    /*
     // GET-endpoint, der henter alle turistattraktioner fra service layer.
     // Returnerer html-siden attractionList.
     @GetMapping()
@@ -32,12 +33,14 @@ public class TouristController {
         return "attractionList";
     }
 
+     */
+
     // GET-endpoint, der viser en enkelt turistattraktion på sin egen HTML side.
     // Attraktionen lægges i Model, så Thymeleaf kan vise dens data.
     // Findes den ikke, sendes brugeren tilbage til oversigten.
-    @GetMapping("/{name}")
-    public String getName(@PathVariable String name, Model model) {
-        TouristAttraction attraction = service.findAttractionByName(name);
+    @GetMapping("/{id}")
+    public String getName(@PathVariable int id, Model model) {
+        TouristAttraction attraction = service.findAttractionById(id);
 
         if (attraction == null) {
             return "redirect:/attractions";
@@ -53,6 +56,8 @@ public class TouristController {
         return "add-attraction";
     }
 
+
+    /*
     @PostMapping("/save")
     public String addAttraction(TouristAttraction attraction, Model model) {
         service.addAttraction(attraction);
@@ -60,10 +65,11 @@ public class TouristController {
         return "successful";
     }
 
-    /*GET-endpoint, der henter information om en specifik attraktion fra service layer og
+    GET-endpoint, der henter information om en specifik attraktion fra service layer og
     * returnere html-siden editAttraction, der giver brugeren lov til at ændre på attraktionens oplysninger,
-    * bortset fra dens navn.*/
-    @GetMapping("{name}/edit")
+    * bortset fra dens navn.
+    */
+    /*@GetMapping("{name}/edit")
     public String editAttraction(Model model, @PathVariable String name) {
         TouristAttraction attraction = service.findAttractionByName(name);
         model.addAttribute("attraction", attraction);
@@ -74,12 +80,12 @@ public class TouristController {
         EnumSet<Tag> tagsList = attraction.getTags();
         model.addAttribute("tagsList", tagsList);
         return "editAttraction";
-    }
+    }*/
 
 
     /*POST-endpoint der gemmer de ændret oplysninger på attraktionen valgt fra endpointet "{name}/edit" og
     * opdatere listen af attraktioner gennem service til repository'et.
-    * updateAttraction.html bliver returneret som viser de gemte oplysninger på attraktionen*/
+    * updateAttraction.html bliver returneret som viser de gemte oplysninger på attraktionen*//*
     @PostMapping("/update")
     public String updateAttraction(Model model, @ModelAttribute("attraction") TouristAttraction attraction) {
         model.addAttribute("attraction", attraction);
@@ -89,6 +95,7 @@ public class TouristController {
         model.addAttribute("tagsList", tagsList);
         return "updateAttraction";
     }
+
 
 
     //POST-endpoint der sletter på en eksisterende attraktion.
@@ -108,4 +115,5 @@ public class TouristController {
          model.addAttribute("taglist", attraction.getTags());
         return "tags";
     }
+    */
 }

@@ -17,7 +17,7 @@ public class TagObject {
         return tag_id;
     }
 
-    public EnumSet<Tag> getTag() {
+    public Tag getTag() {
         return tag;
     }
 

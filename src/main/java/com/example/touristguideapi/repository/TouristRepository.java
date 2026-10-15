@@ -25,9 +25,8 @@ public class TouristRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // Tager et navn på en attraction og returnerer hele objektet, hvis det kan findes. Kaldes fra service.
     public TouristAttraction findAttractionById(int id) {
-        String sql = "SELECT * FROM tourist_attraction WHERE attraction_id= ?";
+        String sql = "SELECT * FROM tourist_attraction WHERE attraction_id = ?";
 
         return jdbcTemplate.queryForObject(
                 sql,
@@ -37,22 +36,5 @@ public class TouristRepository {
 
 
     }
-
-
-
-       /*
-    public ArrayList<TouristAttraction> getAllAttractions() {
-        return touristAttractions;
-    }
-
-
-
-    public List<String> getCities() {
-        return Arrays.asList("København", "Helsingør", "Roskilde");
-    }
-
-     */
-
-
 
 }
