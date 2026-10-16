@@ -7,14 +7,14 @@ public class TouristAttraction {
     private String name;
     private String description;
     private int city_id;
-    private TagObject[] tags;
+    //private TagObject[] tags;
 
-    public TouristAttraction(int id, String name, String description, int city_id, TagObject[] tags) {
+    public TouristAttraction(int id, String name, String description, int city_id) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.city_id = city_id;
-        this.tags = tags;
+        //this.tags = tags;
     }
 
     public String getName() {
@@ -25,13 +25,16 @@ public class TouristAttraction {
         return description;
     }
 
-    public int getCityID() {
+    public int getCityId() {
         return city_id;
     }
 
+    /*
     public TagObject[] getTags() {
         return tags;
     }
+
+     */
 
     public void setName(String name) {
         this.name = name;
@@ -45,15 +48,18 @@ public class TouristAttraction {
         this.city_id = city_id;
     }
 
+    /*
     public void setTags(TagObject[] tags) {
         this.tags = tags;
     }
+
+     */
 
     @Override
     public String toString() {
         return "Name: " + name +
                 "\nDescription: " + description +
-                "\nTags: " + tags +
+
                 "\nCity: " + city_id;
     }
 }

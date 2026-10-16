@@ -12,8 +12,8 @@ public class TouristAttractionRowMapper implements RowMapper<TouristAttraction> 
                 rs.getInt("attraction_id"),
                 rs.getString("name"),
                 rs.getString("description"),
-                rs.getInt ("city_id"),
-                (TagObject[]) rs.getArray("tags").getArray() // dette bør ændres til at konverer manuelt
+                rs.getInt ("city_id")
+                //(TagObject[]) rs.getArray("tags").getArray() // dette bør ændres til at konverer manuelt
         );
     }
 }

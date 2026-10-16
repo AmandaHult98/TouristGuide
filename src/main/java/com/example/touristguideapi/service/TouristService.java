@@ -16,12 +16,12 @@ public class TouristService {
         this.repository = repository;
     }
 
-    /*
-    public ArrayList<TouristAttraction> getTouristAttractions() {
+
+    public List<TouristAttraction> getTouristAttractions() {
         return repository.getAllAttractions();
     }
 
-     */
+
 
     // Kalder på en metode i repository, der returnerer en attraktion baseret på navn.
     // Kaldes selv fra controller.
