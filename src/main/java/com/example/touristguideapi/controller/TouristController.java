@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-
+//Denne kommentar skal slettes
 @Controller
 @RequestMapping("attractions")
 public class TouristController {
