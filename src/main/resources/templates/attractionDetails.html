@@ -19,7 +19,7 @@
         <td>
             <ul>
                 <li th:each="tag : ${attraction.tags}">
-                    <th:block th:switch="${tag.name()}">
+                    <th:block th:switch="${tag}">
                         <span th:case="'ARCHITECTURE'">Arkitektur</span>
                         <span th:case="'ART'">Kunst</span>
                         <span th:case="'AMUSEMENT_PARK'">Forlystelsespark</span>

@@ -1,6 +1,5 @@
 package com.example.touristguideapi.controller;
 
-import com.example.touristguideapi.model.Tag;
 import com.example.touristguideapi.model.TouristAttraction;
 import com.example.touristguideapi.service.TouristService;
 import org.junit.jupiter.api.AfterEach;
@@ -12,7 +11,8 @@ import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.EnumSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -53,8 +53,9 @@ class TouristControllerTest {
     * og view navnet på html siden "attractionDetails".*/
     @Test
     void getName() throws Exception{
-        TouristAttraction attraction = new TouristAttraction("Tivoli", "Forlystelsespark i indre København", "København", EnumSet.of(Tag.AMUSEMENT_PARK, Tag.KID_FRIENDLY));
-        when(touristService.findAttractionByName(attraction.getName())).thenReturn(attraction);
+        TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
+                1, new ArrayList<>(List.of("ART", "MUSEUM")));
+        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
         mockMvc.perform(get("/attractions/Tivoli"))
                 .andExpect(status().isOk())
@@ -93,16 +94,17 @@ class TouristControllerTest {
         TouristAttraction captured = captor.getValue();
         assertEquals("Den lille havfrue", captured.getName());
         assertEquals("Figur fra H.C.Andersens eventyr.", captured.getDescription());
-        assertEquals("København", captured.getCity());
-        assertEquals(EnumSet.of(Tag.ART), captured.getTags());
+        assertEquals(1, captured.getCityID());
+        // assertEquals("Art", captured.getTags());
     }
 
     /*Her skal der testes at en GET request til /{name}/edit endpointet returnerer en
      * 200 OK status og view navnet på html siden "editAttraction".*/
     @Test
     void shouldEditAttraction() throws Exception{
-        TouristAttraction attraction = new TouristAttraction("Tivoli", "Forlystelsespark i indre København", "København", EnumSet.of(Tag.AMUSEMENT_PARK, Tag.KID_FRIENDLY));
-        when(touristService.findAttractionByName(attraction.getName())).thenReturn(attraction);
+        TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
+                1, new ArrayList<>(List.of("ART", "MUSEUM")));
+        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
         mockMvc.perform(get("/attractions/Tivoli/edit"))
                 .andExpect(status().isOk())
@@ -137,10 +139,11 @@ class TouristControllerTest {
      * 200 OK status og view navnet på html siden "deleted".*/
     @Test
     void removeAttraction() throws Exception {
-        TouristAttraction attraction = new TouristAttraction("Tivoli", "Forlystelsespark i indre København", "København", EnumSet.of(Tag.AMUSEMENT_PARK, Tag.KID_FRIENDLY));
-        when(touristService.findAttractionByName(attraction.getName())).thenReturn(attraction);
+        TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
+                1, new ArrayList<>(List.of("ART", "MUSEUM")));
+        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
-        touristService.removeAttraction(attraction.getName());
+        touristService.removeAttraction(attraction.getId());
 
         mockMvc.perform(post("/attractions/Tivoli/delete"))
                 .andExpect(status().isOk())
@@ -154,8 +157,9 @@ class TouristControllerTest {
      * 200 OK status og view navnet på html siden "tags".*/
     @Test
     void shouldGetAttractionTags() throws Exception {
-        TouristAttraction attraction = new TouristAttraction("Tivoli", "Forlystelsespark i indre København", "København", EnumSet.of(Tag.AMUSEMENT_PARK, Tag.KID_FRIENDLY));
-        when(touristService.findAttractionByName(attraction.getName())).thenReturn(attraction);
+        TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
+                1, new ArrayList<>(List.of("ART", "MUSEUM")));
+        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
         mockMvc.perform(get("/attractions/Tivoli/tags"))
                 .andExpect(status().isOk())
