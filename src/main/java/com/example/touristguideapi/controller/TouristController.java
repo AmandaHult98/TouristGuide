@@ -68,8 +68,9 @@ public class TouristController {
         TouristAttraction attraction = service.findAttractionById(id);
         model.addAttribute("attraction", attraction);
 
-        List<City> cityList = service.getCities();
-        model.addAttribute("cityList", cityList);
+        //List<City> cityList = service.getCities();
+        //model.addAttribute("cityList", cityList);
+        model.addAttribute("cityList", service.getCities());
 
         ArrayList<String> tagsList = attraction.getTags();
         model.addAttribute("tagsList", tagsList);
@@ -87,6 +88,8 @@ public class TouristController {
 
         ArrayList<String> tagsList = attraction.getTags();
         model.addAttribute("tagsList", tagsList);
+        model.addAttribute("cityList", service.getCities());
+
         return "updateAttraction";
     }
 

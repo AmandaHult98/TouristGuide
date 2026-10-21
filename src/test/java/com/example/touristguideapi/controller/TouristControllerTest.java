@@ -52,12 +52,12 @@ class TouristControllerTest {
     /*Her skal der testes at en GET request til /{name} endpointet returnerer en 200 OK status
     * og view navnet på html siden "attractionDetails".*/
     @Test
-    void getName() throws Exception{
+    void getIdFromAttraction() throws Exception{
         TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
         when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
-        mockMvc.perform(get("/attractions/Tivoli"))
+        mockMvc.perform(get("/attractions/1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("attractionDetails"));
     }
@@ -77,9 +77,10 @@ class TouristControllerTest {
     void shouldAddAttraction() throws Exception {
         //Simuler en POST request til /save endpointet med de nødvendige parametre:
         mockMvc.perform(post("/attractions/save")
+                        .param("id", "1")
                 .param("name", "Den lille havfrue")
                 .param("description", "Figur fra H.C.Andersens eventyr.")
-                .param("city", "København")
+                .param("city_id", "1")
                 .param("tags", "ART"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("successful"));
@@ -106,7 +107,7 @@ class TouristControllerTest {
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
         when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
-        mockMvc.perform(get("/attractions/Tivoli/edit"))
+        mockMvc.perform(get("/attractions/1/edit"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("editAttraction"));
     }
@@ -145,7 +146,7 @@ class TouristControllerTest {
 
         touristService.removeAttraction(attraction.getId());
 
-        mockMvc.perform(post("/attractions/Tivoli/delete"))
+        mockMvc.perform(post("/attractions/1/delete"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("deleted"));
 
@@ -161,7 +162,7 @@ class TouristControllerTest {
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
         when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
-        mockMvc.perform(get("/attractions/Tivoli/tags"))
+        mockMvc.perform(get("/attractions/1/tags"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("tags"))
                 .andExpect(model().attributeExists("taglist"))

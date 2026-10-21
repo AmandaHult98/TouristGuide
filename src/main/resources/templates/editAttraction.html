@@ -48,8 +48,13 @@
             <textarea rows="5" cols="25" th:field="*{description}"/></textarea>
             <br />
             <label>By:</label>
-            <select th:field="*{city}">
-                <option th:each="city : ${cityList}" th:value="${city}" th:text="${city}"></option>
+            <label for="cityList">By</label>
+            <select id="cityList" th:field="${cityList}">
+                <option value="" disabled selected>Vælg by…</option>
+                <option th:each="city : ${cityList}"
+                        th:value="${city.getCity_id}"
+                        th:text="${city.getCity_name}">
+                </option>
             </select>
             <br />
             <label>Tags:</label>
