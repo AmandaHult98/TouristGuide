@@ -1,6 +1,7 @@
 package com.example.touristguideapi.controller;
 
 import com.example.touristguideapi.model.*;
+import com.example.touristguideapi.repository.TouristRepository;
 import com.example.touristguideapi.service.TouristService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,14 +50,17 @@ public class TouristController {
 
 
     @GetMapping("/add-attraction")
-    public String submitAttraction() {
+    public String submitAttraction(Model model) {
+        model.addAttribute("cityList", service.getCities());
         return "add-attraction";
     }
 
     @PostMapping("/save")
     public String addAttraction(TouristAttraction attraction, Model model) {
+        System.out.println("controller");
         service.addAttraction(attraction);
         model.addAttribute("attraction", attraction);
+        model.addAttribute("cityList", service.getCities());
         return "successful";
     }
 
@@ -68,8 +72,7 @@ public class TouristController {
         TouristAttraction attraction = service.findAttractionById(id);
         model.addAttribute("attraction", attraction);
 
-        List<City> cityList = service.getCities();
-        model.addAttribute("cityList", cityList);
+        model.addAttribute("cityList", service.getCities());
 
         ArrayList<String> tagsList = attraction.getTags();
         model.addAttribute("tagsList", tagsList);
@@ -87,6 +90,8 @@ public class TouristController {
 
         ArrayList<String> tagsList = attraction.getTags();
         model.addAttribute("tagsList", tagsList);
+        model.addAttribute("cityList", service.getCities());
+
         return "updateAttraction";
     }
 

@@ -17,6 +17,8 @@ public class TouristAttraction {
         this.tags = tags;
     }
 
+    public TouristAttraction(){}
+
     public int getId() {
         return id;
     }

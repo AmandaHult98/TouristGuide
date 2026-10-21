@@ -40,19 +40,19 @@
     <br />
     <b>Beskrivelse:</b><p th:text="${attraction.description}"></p>
     <br />
-    <b>By:</b><p th:text="${attraction.city}"></p>
+    <b>By:</b><p th:text="${attraction.cityID}"></p>
     <br />
     <b>Tags:</b>
     <section th:each="Tag : ${tagsList}">
-        <p th:if="*{Tag.name() eq 'ARCHITECTURE'}">Arkitektur</p>
-        <p th:if="*{Tag.name() eq 'KID_FRIENDLY'}">Børnevenligt</p>
-        <p th:if="*{Tag.name() eq 'AMUSEMENT_PARK'}">Forlystelsespark</p>
-        <p th:if="*{Tag.name() eq 'HISTORY'}">Historie</p>
-        <p th:if="*{Tag.name() eq 'ART'}">Kunst</p>
-        <p th:if="*{Tag.name() eq 'MUSEUM'}">Museum</p>
-        <p th:if="*{Tag.name() eq 'NATURE'}">Natur</p>
-        <p th:if="*{Tag.name() eq 'CASTLE'}">Slot</p>
-        <p th:if="*{Tag.name() eq 'ZOO'}">Zoologisk Have</p>
+        <p th:if="*{Tag eq 'ARCHITECTURE'}">Arkitektur</p>
+        <p th:if="*{Tag eq 'KID_FRIENDLY'}">Børnevenligt</p>
+        <p th:if="*{Tag eq 'AMUSEMENT_PARK'}">Forlystelsespark</p>
+        <p th:if="*{Tag eq 'HISTORY'}">Historie</p>
+        <p th:if="*{Tag eq 'ART'}">Kunst</p>
+        <p th:if="*{Tag eq 'MUSEUM'}">Museum</p>
+        <p th:if="*{Tag eq 'NATURE'}">Natur</p>
+        <p th:if="*{Tag eq 'CASTLE'}">Slot</p>
+        <p th:if="*{Tag eq 'ZOO'}">Zoologisk Have</p>
     </section>
 </section>
 

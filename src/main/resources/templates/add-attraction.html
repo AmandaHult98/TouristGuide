@@ -16,6 +16,14 @@
     <textarea id="description" name="description" rows="2" cols="50" required></textarea>
     <br />
 
+    <label for="cityList">By</label>
+    <select id="cityList" th:field="${cityList}">
+        <option value="" disabled selected>Vælg by…</option>
+        <option th:each="city : ${cityList}"
+                th:value="${city.id}"
+                th:text="${city.name}">
+        </option>
+    </select>
     <div class="tags">
 
         <div>

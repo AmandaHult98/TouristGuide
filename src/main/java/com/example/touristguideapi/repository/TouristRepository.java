@@ -87,6 +87,8 @@ public class TouristRepository {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
+        System.out.println("præ template");
+
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(
                     sqlAttraction, Statement.RETURN_GENERATED_KEYS
@@ -99,14 +101,16 @@ public class TouristRepository {
             return ps;
         }, keyHolder);
 
+        System.out.println(attraction.toString());
+
         // Gem attractions tags
+        // For at gemme tags i attraction_tags tabellen skal vi først bruge attraction id
 
-        // Først skal vi have attraktionens id (Skal måske bruge keyholder i stedet)
-        int attractionID = jdbcTemplate.update(
-                "SELECT attraction_id FROM tourist_attraction WHERE name = ?", attraction.getName()
-        );
+        int attractionID = attraction.getId();
 
-        // vi vil også gerne have id for hvert tag, der skal gemmes
+        System.out.println(attractionID);
+
+        // så id for hvert tag, der skal gemmes
 
         if (attraction.getTags() != null) {
             for (Object tag : attraction.getTags()) {
