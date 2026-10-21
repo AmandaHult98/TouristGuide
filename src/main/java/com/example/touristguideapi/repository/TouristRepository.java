@@ -50,6 +50,14 @@ public class TouristRepository {
         );
     }
 
+    public int findIdByName(String name) {
+        String sql = """
+        SELECT attraction_id FROM tourist_attraction WHERE tourist_attraction.name = ?
+        """;
+
+        return jdbcTemplate.queryForObject(sql, Integer.class, name);
+    }
+
     //Henter listen af byer ved hjælp af query(), SQL og CityRowMapper
     public List<City> getCities() {
         return jdbcTemplate.query("SELECT * FROM city", new CityRowMapper());
@@ -117,7 +125,7 @@ public class TouristRepository {
         // Gem attractions tags
         // For at gemme tags i attraction_tags tabellen skal vi først bruge attraction id
 
-        int attractionID = attraction.getId();
+        int attractionID = findIdByName(attraction.getName());
 
         System.out.println(attractionID);
 
