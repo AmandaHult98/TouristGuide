@@ -42,11 +42,22 @@ public class TouristRepository {
         );
     }
 
+    public TagObject findTagByName(String name) {
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM tag WHERE tag_name = ?",
+                new TagObjectRowMapper(),
+                name
+        );
+    }
+
     //Henter listen af byer ved hjælp af query(), SQL og CityRowMapper
     public List<City> getCities() {
         return jdbcTemplate.query("SELECT * FROM city", new CityRowMapper());
     }
 
+    public List<TagObject> getTags() {
+        return jdbcTemplate.query("SELECT * FROM tag", new TagObjectRowMapper());
+    }
 
     public List<TouristAttraction> getAllAttractions() {
 
@@ -113,11 +124,10 @@ public class TouristRepository {
         // så id for hvert tag, der skal gemmes
 
         if (attraction.getTags() != null) {
-            for (Object tag : attraction.getTags()) {
+            for (String tag : attraction.getTags()) {
 
                 // for hvert tag i tags arrayen tjekkes der hvilket id tagget har i databasen
-                // det gemms i en int (igen, måske skal keyholder bruges i stedet
-                int tagID = jdbcTemplate.update("SELECT tag_id FROM tag WHERE tag_name = ?", tag);
+                int tagID = findTagByName(tag).getId();
 
                 // de to id'er bruges til at indsætte data om tags
                 String sqlTags = """
