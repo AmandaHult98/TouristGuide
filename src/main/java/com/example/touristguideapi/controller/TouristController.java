@@ -97,6 +97,7 @@ public class TouristController {
     @PostMapping("/{id}/delete")
     public String removeAttraction(@PathVariable int id, Model model) {
         // find name fra attraction_id og tilføj navn til modellen
+        model.addAttribute("name", service.findAttractionById(id).getName());
         model.addAttribute("id", id);
         service.removeAttraction(id);
         return "deleted";

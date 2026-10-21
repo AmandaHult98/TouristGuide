@@ -140,6 +140,7 @@ public class TouristRepository {
         TouristAttraction attraction = findAttractionById(id);
 
         if (attraction != null) {
+            jdbcTemplate.update("delete from attraction_tags where attraction_id = ?", id);
             jdbcTemplate.update("delete from tourist_attraction where attraction_id = ?", id);
         } else {
             System.out.println("No attraction with that id.");

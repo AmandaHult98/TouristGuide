@@ -1,5 +1,8 @@
 USE touristguide;
-# i tvivl om tags skal oprettes her eller i attraction_tags i stedet. Læner mod det sidstnævnte.
+
+# DELETE FROM attraction_tags;
+# DELETE FROM tourist_attraction;
+
 INSERT INTO tourist_attraction (attraction_id, name, description, city_id)
 VALUES (1, 'Tivoli', 'Forlystelsespark i indre København', 1),
        (2, 'Kronborg', 'Slot i Helsingør, hvor Hamlet foregår.', 8),
