@@ -45,6 +45,7 @@ public class TouristController {
         }
 
         model.addAttribute("attraction", attraction);
+        model.addAttribute("city_name", service.findCityById(attraction.getCity_id()));
         return "attractionDetails";
     }
 
