@@ -34,8 +34,8 @@ public class TouristService {
     }
 
     // Tager imod et navn og en attraction fra controlleren og sender det videre til metoden i repository.
-    public void updateAttraction(int id, TouristAttraction attraction) {
-        repository.updateAttraction(id, attraction);
+    public void updateAttraction(TouristAttraction attraction) {
+        repository.updateAttraction(attraction);
     }
 
     // Tager imod et navn fra controlleren og sender det videre til en metode i repository

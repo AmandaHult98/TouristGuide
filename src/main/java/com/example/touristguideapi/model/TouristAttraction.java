@@ -3,22 +3,28 @@ package com.example.touristguideapi.model;
 import java.util.ArrayList;
 
 public class TouristAttraction {
-    private int id;
+    private int attraction_id;
     private String name;
     private String description;
     private int city_id;
     private ArrayList<String> tags;
 
-    public TouristAttraction(int id, String name, String description, int city_id, ArrayList<String> tags) {
-        this.id = id;
+    public TouristAttraction(int attraction_id, String name, String description, int city_id, ArrayList<String> tags) {
+        this.attraction_id = attraction_id;
         this.name = name;
         this.description = description;
         this.city_id = city_id;
         this.tags = tags;
     }
 
-    public int getId() {
-        return id;
+//    public TouristAttraction(int id, String name, String description, String city_id, ArrayList<String> tags) {
+//        this(id, name, description, Integer.parseInt(city_id), tags);
+//    }
+
+    public TouristAttraction(){}
+
+    public int getAttraction_id() {
+        return attraction_id;
     }
 
     public String getName() {
@@ -29,7 +35,7 @@ public class TouristAttraction {
         return description;
     }
 
-    public int getCityID() {
+    public int getCity_id() {
         return city_id;
     }
 
@@ -37,8 +43,8 @@ public class TouristAttraction {
         return tags;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAttraction_id(int id) {
+        this.attraction_id = id;
     }
 
     public void setName(String name) {
@@ -49,7 +55,7 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setCityID(int city_id) {
+    public void setCity_id(int city_id) {
         this.city_id = city_id;
     }
 
