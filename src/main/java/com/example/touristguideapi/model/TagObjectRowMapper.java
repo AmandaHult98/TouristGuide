@@ -10,7 +10,7 @@ public class TagObjectRowMapper implements RowMapper<TagObject> {
     public TagObject mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new TagObject(
                 rs.getInt("tag_id"),
-                Tag.valueOf(rs.getString("tag"))
+                rs.getString("tag_name")
         );
     }
 }

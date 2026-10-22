@@ -23,16 +23,16 @@
     <tr th:each="touristattraction : ${attractionList}">
         <td th:text="${touristattraction.name}"></td>
         <td th:text="${touristattraction.description}"></td>
-        <td><a th:href="@{/attractions/{id}/edit(id=${touristattraction.id})}">
+        <td><a th:href="@{/attractions/{id}/edit(id=${touristattraction.attraction_id})}">
             <button type="button">Opdater</button>
         </a></td>
         <td>
-            <form th:action="@{/attractions/{id}/delete(id=${touristattraction.id})}"
+            <form th:action="@{/attractions/{id}/delete(id=${touristattraction.attraction_id})}"
                   method="post">
                 <button type="submit">Slet</button>
             </form>
         </td>
-        <td><a th:href="@{/attractions/{id}/tags(id=${touristattraction.id})}">
+        <td><a th:href="@{/attractions/{id}/tags(id=${touristattraction.attraction_id})}">
             <button type="button" >Tags</button>
         </a>
             </td>
