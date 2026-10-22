@@ -41,15 +41,17 @@
                 th:action="@{/attractions/update}"
                 th:object="${attraction}"
         >
-            <label>Navn:</label>
-            <input type="text" th:field="*{name}" readonly/>
+            <label for="ID">ID:</label>
+            <input id="ID" type="number" th:field="*{attraction_id}" readonly/>
+            <label for="name">Navn:</label>
+            <input id="name" type="text" th:field="*{name}" readonly/>
             <br />
-            <label>Beskrivelse:</label>
-            <textarea rows="5" cols="25" th:field="*{description}"/></textarea>
+            <label for="desc">Beskrivelse:</label>
+            <textarea id="desc" rows="5" cols="25" th:field="*{description}"></textarea>
             <br />
-            <label>By:</label>
-            <label for="cityList">By</label>
-            <select id="cityList" th:field="${cityList}">
+
+            <label for="city_id">By</label>
+            <select id="city_id" name="city_id" th:object="${cityList}">
                 <option value="" disabled selected>Vælg by…</option>
                 <option th:each="city : ${cityList}"
                         th:value="${city.id}"
