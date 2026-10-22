@@ -57,7 +57,7 @@ class TouristControllerTest {
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
         when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
-        mockMvc.perform(get("/attractions/Tivoli"))
+        mockMvc.perform(get("/attractions/1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("attractionDetails"));
     }
@@ -79,7 +79,7 @@ class TouristControllerTest {
         mockMvc.perform(post("/attractions/save")
                 .param("name", "Den lille havfrue")
                 .param("description", "Figur fra H.C.Andersens eventyr.")
-                .param("city", "København")
+                .param("city_id", "1")
                 .param("tags", "ART"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("successful"));
@@ -94,8 +94,8 @@ class TouristControllerTest {
         TouristAttraction captured = captor.getValue();
         assertEquals("Den lille havfrue", captured.getName());
         assertEquals("Figur fra H.C.Andersens eventyr.", captured.getDescription());
-        assertEquals(1, captured.getCityID());
-        // assertEquals("Art", captured.getTags());
+        assertEquals(1, captured.getCity_id());
+        assertEquals(List.of("ART"), captured.getTags());
     }
 
     /*Her skal der testes at en GET request til /{name}/edit endpointet returnerer en
@@ -106,7 +106,7 @@ class TouristControllerTest {
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
         when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
-        mockMvc.perform(get("/attractions/Tivoli/edit"))
+        mockMvc.perform(get("/attractions/1/edit"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("editAttraction"));
     }
@@ -125,15 +125,18 @@ class TouristControllerTest {
                 .andExpect(view().name("updateAttraction"));
 
         ArgumentCaptor<TouristAttraction> captor = ArgumentCaptor.forClass(TouristAttraction.class);
-        verify(touristService).updateAttraction("Tivoli", captor.capture());
+        verify(touristService).updateAttraction(1, captor.capture());
         //verify(touristService).updateAttraction("Tivoli", updatedAttraction);
 
         TouristAttraction captured = captor.getValue();
         assertEquals("Tivoli", captured.getName());
         assertEquals("Forlystelsespark i indre København", captured.getDescription());
-        assertEquals("København", captured.getCity());
-        assertEquals(EnumSet.of(Tag.AMUSEMENT_PARK), captured.getTags());
-    }*/
+        assertEquals("København", captured.getCity_id());
+    }
+
+     */
+
+
 
     /*Her skal der testes at en POST request til /{name}/delete endpointet returnerer en
      * 200 OK status og view navnet på html siden "deleted".*/
@@ -145,7 +148,7 @@ class TouristControllerTest {
 
         touristService.removeAttraction(attraction.getId());
 
-        mockMvc.perform(post("/attractions/Tivoli/delete"))
+        mockMvc.perform(post("/attractions/1/delete"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("deleted"));
 
@@ -161,7 +164,7 @@ class TouristControllerTest {
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
         when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
 
-        mockMvc.perform(get("/attractions/Tivoli/tags"))
+        mockMvc.perform(get("/attractions/1/tags"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("tags"))
                 .andExpect(model().attributeExists("taglist"))

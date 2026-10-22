@@ -9,6 +9,10 @@ public class TouristAttraction {
     private int city_id;
     private ArrayList<String> tags;
 
+    public TouristAttraction() {
+
+    }
+
     public TouristAttraction(int id, String name, String description, int city_id, ArrayList<String> tags) {
         this.id = id;
         this.name = name;
@@ -29,7 +33,7 @@ public class TouristAttraction {
         return description;
     }
 
-    public int getCityID() {
+    public int getCity_id() {
         return city_id;
     }
 
@@ -49,7 +53,7 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setCityID(int city_id) {
+    public void setCity_id(int city_id) {
         this.city_id = city_id;
     }
 
