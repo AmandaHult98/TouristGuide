@@ -62,6 +62,10 @@ public class TouristRepository {
         return jdbcTemplate.query("SELECT * FROM city", new CityRowMapper());
     }
 
+    public String findCityById(int id){
+        return jdbcTemplate.queryForObject("SELECT city_name FROM city WHERE city_id = ?", String.class, id);
+    }
+
     public List<TagObject> getTags() {
         return jdbcTemplate.query("SELECT * FROM tag", new TagObjectRowMapper());
     }

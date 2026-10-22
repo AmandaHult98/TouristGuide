@@ -46,4 +46,9 @@ public class TouristService {
     public List<City> getCities() {
         return repository.getCities();
     }
+
+    public String findCityById(int id){
+            return repository.findCityById(id);
+    }
+
 }

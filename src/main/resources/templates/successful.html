@@ -5,10 +5,13 @@
     <link rel="stylesheet" th:href="@{/common.css}">
     <title>Successful</title>
 </head>
-<h>Successfully added</h>
+<h1>Successfully added</h1>
 <body>
 <p>Attraction name: <span th:text="${attraction.name}"></span></p>
 <p>Description <span th:text="${attraction.description}"></span></p>
+<p>By: <span th:text="${city_name}"></span></p>
+<p>Tags: <span th:text="${attraction.tags}"></span></p>
+
 <br />
 <a class="tilføj" th:href="@{/attractions}">
     <button type="button">Tilbage</button>
