@@ -6,34 +6,34 @@ import java.util.EnumSet;
 
 public class TagObject {
     private int tag_id;
-    private Tag tag;
+    private String tag_name;
 
 
-    public TagObject (int tag_id, Tag tag) {
+    public TagObject (int tag_id, String tag_name) {
         this.tag_id = tag_id;
-        this.tag = tag;
+        this.tag_name = tag_name;
     }
 
     //Getters
-    public int getTag_id() {
+    public int getId() {
         return tag_id;
     }
 
-    public Tag getTag() {
-        return tag;
+    public String getName() {
+        return tag_name;
     }
 
     //Setters
-    public void setTag_id(int tag_id) {
+    public void setId(int tag_id) {
         this.tag_id = tag_id;
     }
 
-    public void setTag(Tag tag) {
-        this.tag = tag;
+    public void setName(String tag_name) {
+        this.tag_name = tag_name;
     }
 
     @Override
     public String toString() {
-        return "Tag id: " + tag_id + ", tags: " + tag;
+        return "Tag id: " + tag_id + ", tags: " + tag_name;
     }
 }

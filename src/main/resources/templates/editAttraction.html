@@ -52,8 +52,8 @@
             <select id="cityList" th:field="${cityList}">
                 <option value="" disabled selected>Vælg by…</option>
                 <option th:each="city : ${cityList}"
-                        th:value="${city.getCity_id}"
-                        th:text="${city.getCity_name}">
+                        th:value="${city.id}"
+                        th:text="${city.name}">
                 </option>
             </select>
             <br />
