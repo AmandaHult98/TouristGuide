@@ -178,7 +178,7 @@ public class TouristRepository {
             // sql parametrene identificeres med de gemte id'er
             ps.setString(1, updatedAttraction.getName());
             ps.setString(2, updatedAttraction.getDescription());
-            ps.setInt(3, updatedAttraction.getCityID());
+            ps.setInt(3, updatedAttraction.getCityID()); // prøv at parse string til int her
             ps.setInt(4, id);
             return ps;
         });
