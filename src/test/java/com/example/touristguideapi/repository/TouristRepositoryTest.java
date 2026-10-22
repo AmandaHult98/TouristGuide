@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -53,6 +54,13 @@ class TouristRepositoryTest {
 
     @Test
     void addAttraction() {
+        TouristAttraction newAttraction = new TouristAttraction(3, "Rundetårn", "Astronomisk tårn fra Christian IVs tid", 1, new ArrayList<>(List.of("ART", "MUSEUM")));
+        repo.addAttraction(newAttraction);
+        TouristAttraction attraction = repo.findAttractionById(3);
+        assertThat(attraction).isNotNull();
+        assertThat(attraction.getName()).isEqualTo("Rundetårn");
+
+
     }
 
     @Test

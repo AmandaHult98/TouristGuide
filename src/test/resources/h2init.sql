@@ -43,8 +43,6 @@ INSERT INTO tag (tag_id, tag_name) VALUES (2, 'ART');
 
 /*INSERT INTO tourist_attraction (attraction_id, name, description, city_id) VALUES (1, 'Tivoli', 'Forlystelsespark i indre København', 1);*/
 INSERT INTO tourist_attraction (attraction_id, name, description, city_id) VALUES (2, 'Kronborg', 'Slot i Helsingør, hvor Hamlet foregår.', 8);
-/*INSERT INTO tourist_attraction (attraction_id, name, description, city_id) VALUES (3, 'Rundetårn', 'Astronomisk tårn fra Christian IVs tid', 1);*/
-
 
 
 INSERT INTO attraction_tags (attraction_id, tag_id) VALUES (1, 3); /* tivoli, amusement park */
