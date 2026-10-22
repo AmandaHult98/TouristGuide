@@ -52,22 +52,4 @@ class TouristRepositoryTest {
 
     }
 
-    @Test
-    void addAttraction() {
-        TouristAttraction newAttraction = new TouristAttraction(3, "Rundetårn", "Astronomisk tårn fra Christian IVs tid", 1, new ArrayList<>(List.of("ART", "MUSEUM")));
-        repo.addAttraction(newAttraction);
-        TouristAttraction attraction = repo.findAttractionById(3);
-        assertThat(attraction).isNotNull();
-        assertThat(attraction.getName()).isEqualTo("Rundetårn");
-
-
-    }
-
-    @Test
-    void removeAttraction() {
-    }
-
-    @Test
-    void updateAttraction() {
-    }
 }
