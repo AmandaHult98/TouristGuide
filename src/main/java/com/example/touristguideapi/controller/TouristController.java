@@ -86,7 +86,8 @@ public class TouristController {
     @PostMapping("/update")
     public String updateAttraction(Model model, @ModelAttribute("attraction") TouristAttraction attraction) {
         model.addAttribute("attraction", attraction);
-        service.updateAttraction(attraction.getId(), attraction);
+        System.out.println(attraction);
+        service.updateAttraction(attraction);
 
         ArrayList<String> tagsList = attraction.getTags();
         model.addAttribute("tagsList", tagsList);

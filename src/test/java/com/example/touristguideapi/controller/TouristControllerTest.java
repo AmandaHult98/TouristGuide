@@ -55,7 +55,7 @@ class TouristControllerTest {
     void getName() throws Exception{
         TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
-        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
+        when(touristService.findAttractionById(attraction.getAttraction_id())).thenReturn(attraction);
 
         mockMvc.perform(get("/attractions/Tivoli"))
                 .andExpect(status().isOk())
@@ -104,7 +104,7 @@ class TouristControllerTest {
     void shouldEditAttraction() throws Exception{
         TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
-        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
+        when(touristService.findAttractionById(attraction.getAttraction_id())).thenReturn(attraction);
 
         mockMvc.perform(get("/attractions/Tivoli/edit"))
                 .andExpect(status().isOk())
@@ -141,9 +141,9 @@ class TouristControllerTest {
     void removeAttraction() throws Exception {
         TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
-        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
+        when(touristService.findAttractionById(attraction.getAttraction_id())).thenReturn(attraction);
 
-        touristService.removeAttraction(attraction.getId());
+        touristService.removeAttraction(attraction.getAttraction_id());
 
         mockMvc.perform(post("/attractions/Tivoli/delete"))
                 .andExpect(status().isOk())
@@ -159,7 +159,7 @@ class TouristControllerTest {
     void shouldGetAttractionTags() throws Exception {
         TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
-        when(touristService.findAttractionById(attraction.getId())).thenReturn(attraction);
+        when(touristService.findAttractionById(attraction.getAttraction_id())).thenReturn(attraction);
 
         mockMvc.perform(get("/attractions/Tivoli/tags"))
                 .andExpect(status().isOk())
