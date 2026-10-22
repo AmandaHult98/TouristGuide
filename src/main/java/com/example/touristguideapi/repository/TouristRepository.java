@@ -42,10 +42,9 @@ public class TouristRepository {
         );
     }
 
-    public TagObject findTagByName(String name) {
+    public int findTagIdByName(String name) {
         return jdbcTemplate.queryForObject(
-                "SELECT * FROM tag WHERE tag_name = ?",
-                new TagObjectRowMapper(),
+                "SELECT tag_id FROM tag WHERE tag_name = ?", Integer.class,
                 name
         );
     }
@@ -106,8 +105,6 @@ public class TouristRepository {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        System.out.println("præ template");
-
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(
                     sqlAttraction, Statement.RETURN_GENERATED_KEYS
@@ -120,14 +117,10 @@ public class TouristRepository {
             return ps;
         }, keyHolder);
 
-        System.out.println(attraction.toString());
-
         // Gem attractions tags
         // For at gemme tags i attraction_tags tabellen skal vi først bruge attraction id
 
-        int attractionID = findIdByName(attraction.getName());
-
-        System.out.println(attractionID);
+        int attractionID = findIdByName(attraction.getName()); // bør bruge keyholder ?
 
         // så id for hvert tag, der skal gemmes
 
@@ -135,7 +128,7 @@ public class TouristRepository {
             for (String tag : attraction.getTags()) {
 
                 // for hvert tag i tags arrayen tjekkes der hvilket id tagget har i databasen
-                int tagID = findTagByName(tag).getId();
+                int tagID = findTagIdByName(tag); // bør bruge keyholder?
 
                 // de to id'er bruges til at indsætte data om tags
                 String sqlTags = """

@@ -30,7 +30,6 @@ public class TouristService {
 
     // Tager imod en attraction fra controlleren og sender det videre til repository
     public void addAttraction(TouristAttraction attraction) {
-        System.out.println("Service");
         repository.addAttraction(attraction);
     }
 

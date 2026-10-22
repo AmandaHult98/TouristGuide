@@ -17,6 +17,10 @@ public class TouristAttraction {
         this.tags = tags;
     }
 
+//    public TouristAttraction(int id, String name, String description, String city_id, ArrayList<String> tags) {
+//        this(id, name, description, Integer.parseInt(city_id), tags);
+//    }
+
     public TouristAttraction(){}
 
     public int getId() {
