@@ -40,8 +40,8 @@ class TouristRepositoryTest {
 
         assertThat(all).isNotNull();
         assertThat(all.size()).isEqualTo(2);
-        assertThat(all.get(0).getCity_name()).isEqualTo("København");
-        assertThat(all.get(1).getCity_name()).isEqualTo("Helsingør");
+        assertThat(all.get(0).getName()).isEqualTo("København");
+        assertThat(all.get(1).getName()).isEqualTo("Helsingør");
 
     }
 

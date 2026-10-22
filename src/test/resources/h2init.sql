@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS tag;
 
-CREATE TABLE IF NOT EXISTS tag
+CREATE TABLE tag
 (
     tag_id   INT /*AUTO_INCREMENT*/ PRIMARY KEY,
     tag_name VARCHAR(50) NOT NULL
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS tag
 
 DROP TABLE IF EXISTS city;
 
-CREATE TABLE IF NOT EXISTS city
+CREATE TABLE city
 (
     city_id      INT /*AUTO_INCREMENT*/ PRIMARY KEY,
     city_name     VARCHAR(50)
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS city
 
 DROP TABLE IF EXISTS tourist_attraction;
 
-CREATE TABLE IF NOT EXISTS tourist_attraction
+CREATE TABLE tourist_attraction
 (
     attraction_id INT /*AUTO_INCREMENT*/ PRIMARY KEY,
     name          VARCHAR(50),
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS tourist_attraction
 
 DROP TABLE IF EXISTS attraction_tags;
 
-CREATE TABLE IF NOT EXISTS attraction_tags
+CREATE TABLE attraction_tags
 (
     attraction_id INT NOT NULL,
     tag_id        INT NOT NULL/*,
