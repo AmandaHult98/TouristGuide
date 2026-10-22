@@ -66,6 +66,7 @@ public class TouristRepository {
         return jdbcTemplate.query("SELECT * FROM tag", new TagObjectRowMapper());
     }
 
+
     public List<TouristAttraction> getAllAttractions() {
 
         // tourist_attraction med id, navn, beskrivelse og by joines med attraction_tags for at finde
@@ -81,7 +82,7 @@ public class TouristRepository {
                 ON attraction_tags.attraction_id = tourist_attraction.attraction_id
                 JOIN tag
                 on tag.tag_id = attraction_tags.tag_id
-                GROUP BY attraction_id
+                GROUP BY tourist_attraction.attraction_id
                 """;
         // GROUP BY på id, samler alt data op givent id
 

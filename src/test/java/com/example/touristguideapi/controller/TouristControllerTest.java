@@ -52,7 +52,7 @@ class TouristControllerTest {
     /*Her skal der testes at en GET request til /{name} endpointet returnerer en 200 OK status
     * og view navnet på html siden "attractionDetails".*/
     @Test
-    void getName() throws Exception{
+    void getIdFromAttraction() throws Exception{
         TouristAttraction attraction = new TouristAttraction(1, "Tivoli", "Forlystelsespark i indre København",
                 1, new ArrayList<>(List.of("ART", "MUSEUM")));
         when(touristService.findAttractionById(attraction.getAttraction_id())).thenReturn(attraction);
@@ -77,6 +77,7 @@ class TouristControllerTest {
     void shouldAddAttraction() throws Exception {
         //Simuler en POST request til /save endpointet med de nødvendige parametre:
         mockMvc.perform(post("/attractions/save")
+                        .param("id", "1")
                 .param("name", "Den lille havfrue")
                 .param("description", "Figur fra H.C.Andersens eventyr.")
                 .param("city_id", "1")
