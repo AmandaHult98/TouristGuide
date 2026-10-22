@@ -64,4 +64,5 @@ jobs:
           app-name: 'touristguideapp'
           slot-name: 'Production'
           package: '*.jar'
+          type: 'jar'
           
