@@ -1,7 +1,8 @@
 USE touristguide;
 
 INSERT INTO city (city_id, city_name)
-VALUES (1, 'København'),
+VALUES (0, 'test'),
+       (1, 'København'),
        (2, 'Aarhus'),
        (3,'Odense'),
        (4, 'Aalborg'),

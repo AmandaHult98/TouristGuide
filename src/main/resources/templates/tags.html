@@ -12,18 +12,19 @@
         <h1 th:text="${attraction.name}"></h1>
         <hr>
         <p th:text="${attraction.description}"></p>
-        <ul th:each="Tag : ${taglist}">
-            <li th:text="${taglist}"></li>
-<!--            Intet tag evalueres til at være sandt pt-->
-            <li th:if="*{Tag == 'ARCHITECTURE'}">Arkitektur</li>
-            <li th:if="${Tag == 'KID_FRIENDLY'}">Børnevenligt</li>
-            <li th:if="*{Tag == 'AMUSEMENT_PARK'}">Forlystelsespark</li>
-            <li th:if="*{Tag == 'HISTORY'}">Historie</li>
-            <li th:if="*{Tag == 'ART'}">Kunst</li>
-            <li th:if="*{Tag == 'MUSEUM'}">Museum</li>
-            <li th:if="*{Tag == 'NATURE'}">Natur</li>
-            <li th:if="*{Tag == 'CASTLE'}">Slot</li>
-            <li th:if="*{Tag == 'ZOO'}">Zoologisk Have</li>
+        <ul>
+            <li th:each="tag : ${taglist}" th:switch="${tag}">
+                <span th:case="'ARCHITECTURE'">Arkitektur</span>
+                <span th:case="'KID_FRIENDLY'">Børnevenligt</span>
+                <span th:case="'AMUSEMENT_PARK'">Forlystelsespark</span>
+                <span th:case="'HISTORY'">Historie</span>
+                <span th:case="'ART'">Kunst</span>
+                <span th:case="'MUSEUM'">Museum</span>
+                <span th:case="'NATURE'">Natur</span>
+                <span th:case="'CASTLE'">Slot</span>
+                <span th:case="'ZOO'">Zoologisk Have</span>
+                <span th:case="*">[[${tag}]]</span>
+            </li>
         </ul>
         <div class="button-right">
             <a th:href="@{/attractions}">

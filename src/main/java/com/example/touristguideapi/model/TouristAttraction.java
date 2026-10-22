@@ -17,6 +17,12 @@ public class TouristAttraction {
         this.tags = tags;
     }
 
+//    public TouristAttraction(int id, String name, String description, String city_id, ArrayList<String> tags) {
+//        this(id, name, description, Integer.parseInt(city_id), tags);
+//    }
+
+    public TouristAttraction(){}
+
     public int getId() {
         return id;
     }
@@ -29,7 +35,7 @@ public class TouristAttraction {
         return description;
     }
 
-    public int getCityID() {
+    public int getCity_id() {
         return city_id;
     }
 
@@ -49,7 +55,7 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setCityID(int city_id) {
+    public void setCity_id(int city_id) {
         this.city_id = city_id;
     }
 

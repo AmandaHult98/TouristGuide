@@ -42,11 +42,29 @@ public class TouristRepository {
         );
     }
 
+    public int findTagIdByName(String name) {
+        return jdbcTemplate.queryForObject(
+                "SELECT tag_id FROM tag WHERE tag_name = ?", Integer.class,
+                name
+        );
+    }
+
+    public int findIdByName(String name) {
+        String sql = """
+        SELECT attraction_id FROM tourist_attraction WHERE tourist_attraction.name = ?
+        """;
+
+        return jdbcTemplate.queryForObject(sql, Integer.class, name);
+    }
+
     //Henter listen af byer ved hjælp af query(), SQL og CityRowMapper
     public List<City> getCities() {
         return jdbcTemplate.query("SELECT * FROM city", new CityRowMapper());
     }
 
+    public List<TagObject> getTags() {
+        return jdbcTemplate.query("SELECT * FROM tag", new TagObjectRowMapper());
+    }
 
     public List<TouristAttraction> getAllAttractions() {
 
@@ -95,25 +113,22 @@ public class TouristRepository {
             // sql parametrene identificeres med data returneret fra java metoderne
             ps.setString(1, attraction.getName());
             ps.setString(2, attraction.getDescription());
-            ps.setInt(3, attraction.getCityID());
+            ps.setInt(3, attraction.getCity_id());
             return ps;
         }, keyHolder);
 
         // Gem attractions tags
+        // For at gemme tags i attraction_tags tabellen skal vi først bruge attraction id
 
-        // Først skal vi have attraktionens id (Skal måske bruge keyholder i stedet)
-        int attractionID = jdbcTemplate.update(
-                "SELECT attraction_id FROM tourist_attraction WHERE name = ?", attraction.getName()
-        );
+        int attractionID = findIdByName(attraction.getName()); // bør bruge keyholder ?
 
-        // vi vil også gerne have id for hvert tag, der skal gemmes
+        // så id for hvert tag, der skal gemmes
 
         if (attraction.getTags() != null) {
-            for (Object tag : attraction.getTags()) {
+            for (String tag : attraction.getTags()) {
 
                 // for hvert tag i tags arrayen tjekkes der hvilket id tagget har i databasen
-                // det gemms i en int (igen, måske skal keyholder bruges i stedet
-                int tagID = jdbcTemplate.update("SELECT tag_id FROM tag WHERE tag_name = ?", tag);
+                int tagID = findTagIdByName(tag); // bør bruge keyholder?
 
                 // de to id'er bruges til at indsætte data om tags
                 String sqlTags = """
@@ -163,7 +178,7 @@ public class TouristRepository {
             // sql parametrene identificeres med de gemte id'er
             ps.setString(1, updatedAttraction.getName());
             ps.setString(2, updatedAttraction.getDescription());
-            ps.setInt(3, updatedAttraction.getCityID());
+            ps.setInt(3, updatedAttraction.getCity_id()); // prøv at parse string til int her
             ps.setInt(4, id);
             return ps;
         });
