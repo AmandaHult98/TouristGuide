@@ -35,7 +35,7 @@ public class TouristAttraction {
         return description;
     }
 
-    public int getCityID() {
+    public int getCity_id() {
         return city_id;
     }
 
@@ -55,7 +55,7 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setCityID(int city_id) {
+    public void setCity_id(int city_id) {
         this.city_id = city_id;
     }
 
