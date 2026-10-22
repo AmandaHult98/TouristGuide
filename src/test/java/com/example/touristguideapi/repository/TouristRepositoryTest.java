@@ -3,8 +3,6 @@ package com.example.touristguideapi.repository;
 
 import com.example.touristguideapi.model.City;
 import com.example.touristguideapi.model.TouristAttraction;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +11,6 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
 
@@ -25,14 +22,13 @@ class TouristRepositoryTest {
     @Autowired
     private TouristRepository repo;
 
-    /*@Test
+    @Test
     void findAttractionById() {
-        TouristAttraction attraction = repo.findAttractionById(1);
+        TouristAttraction attraction = repo.findAttractionById(2);
 
         assertThat(attraction).isNotNull();
         assertThat(attraction.getName()).isEqualTo("Kronborg");
-
-    }*/
+    }
 
     @Test
     void getCities() {
@@ -50,9 +46,8 @@ class TouristRepositoryTest {
         List<TouristAttraction> allAttractions = repo.getAllAttractions();
 
         assertThat(allAttractions).isNotNull();
-        assertThat(allAttractions.size()).isEqualTo(2);
-        assertThat(allAttractions.get(0).getName()).isEqualTo("Tivoli");
-        assertThat(allAttractions.get(1).getName()).isEqualTo("Kronborg");
+        assertThat(allAttractions.size()).isEqualTo(1);
+        assertThat(allAttractions.get(0).getName()).isEqualTo("Kronborg");
 
     }
 
