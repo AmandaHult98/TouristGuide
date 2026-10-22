@@ -45,6 +45,7 @@ public class TouristController {
         }
 
         model.addAttribute("attraction", attraction);
+        model.addAttribute("city_name", service.findCityById(attraction.getCity_id()));
         return "attractionDetails";
     }
 
@@ -58,6 +59,7 @@ public class TouristController {
     @PostMapping("/save")
     public String addAttraction(TouristAttraction attraction, Model model) {
         model.addAttribute("attraction", attraction);
+        model.addAttribute("city_name", service.findCityById(attraction.getCity_id()));
 
         // city_id bliver sendt som string i stedet for int, hvilket får PostMapping til at fejle
         service.addAttraction(attraction);
