@@ -16,7 +16,7 @@ public class TouristAttractionRowMapper implements RowMapper<TouristAttraction> 
         String tagNames = rs.getString("tag_names");
 
         // String'en med all en attraktions tags omdannes til en ArrayList<String> ved brug af split på komma
-        ArrayList<String> tags = new ArrayList<>(List.of(tagNames.split("'")));
+        ArrayList<String> tags = new ArrayList<>(List.of(tagNames.split(",")));
 
         return new TouristAttraction(
                 rs.getInt("attraction_id"),
