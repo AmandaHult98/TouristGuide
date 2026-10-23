@@ -117,8 +117,8 @@ public class TouristRepository {
             ps.setInt(3, attraction.getCity_id());
             return ps;
         }, keyHolder);
-        //
-        //        // Gem attractions tags
+
+        // Gem attractions tags
         // For at gemme tags i attraction_tags tabellen skal vi først bruge attraction id
 
         int attractionID = findIdByName(attraction.getName()); // bør bruge keyholder ?
@@ -185,7 +185,7 @@ public class TouristRepository {
             // sql parametrene identificeres med de gemte id'er
             ps.setString(1, updatedAttraction.getName());
             ps.setString(2, updatedAttraction.getDescription());
-            ps.setInt(3, updatedAttraction.getCity_id()); // prøv at parse string til int her
+            ps.setInt(3, updatedAttraction.getCity_id());
             ps.setInt(4, updatedAttraction.getAttraction_id());
             return ps;
         }, keyHolder);
